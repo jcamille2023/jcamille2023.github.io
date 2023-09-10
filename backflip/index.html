@@ -7,17 +7,32 @@ const time = 2.3;
 const photo_1 = "https://jcamille2023.github.io/jcamille2023/backflip/ezgif-1-6edddceba4.png";
 const gif_2 = "https://jcamille2023.github.io/jcamille2023/backflip/ezgif-1-6edddceba4.gif";
 const photo_2 = "https://jcamille2023.github.io/jcamille2023/backflip/backflip-its-a-man-doing-a-backflip.png";
+var photo = document.getElementById("photo");
 
-function wait() {
-    console.log(".");
+function change_photo_2() {
+    photo.setAttribute("src",photo_2);
+    var button = document.getElementById("button");
+    button.innerHTML("Do a flip!");
+    button.setAttribute("onclick","do_a_flip()")
+}
+
+function bring_him_back() {
+    photo.setAttribute("src",gif_2);
+    setTimeout(change_photo_2,2300);
+}
+
+function change_photo_1() {
+    photo.setAttribute("src",photo_1);
+    var button = document.getElementById("button");
+    button.innerHTML("Bring him back.");
+    button.setAttribute("onclick","bring_him_back()")
 }
 
 
 function do_a_flip() {
-    var photo = document.getElementById("photo");
     photo.setAttribute("src",gif_1);
-    setTimeout(wait,2300);
-    photo.setAttribute("src",photo_1);
+    setTimeout(change_photo_1,2300);
+    
     
 
 
@@ -27,7 +42,7 @@ function do_a_flip() {
     </head>
     <body>
         <img id="photo" src="https://jcamille2023.github.io/jcamille2023/backflip/backflip-its-a-man-doing-a-backflip.png" width=472px height=472px></img>
-        <button onclick="do_a_flip()">Do a flip!</button>
+        <button id="button" onclick="do_a_flip()">Do a flip!</button>
         
     </body>
 </html>

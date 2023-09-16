@@ -3,6 +3,7 @@ const row_2 = [0,1,2];
 const row_3 = [0,1,2];
 var turn_counter = 0;
 
+
 function play_again() {
   location.reload();
 }
@@ -165,3 +166,6 @@ function move(a) {
     
   
 }
+
+function () {
+  firebase.auth().signInAnonymously()

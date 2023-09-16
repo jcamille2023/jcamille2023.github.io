@@ -63,49 +63,49 @@ function checkWin() {
   }
   else if (row_1[0] == "O" && row_1[1] == "O" && row_1[2] == "O") {
     display_win = document.getElementById("game_winner");
-    display_win.innerHTML = "X wins";
+    display_win.innerHTML = "O wins";
     play_again_button = document.getElementById("play_again");
     play_again_button.setAttribute("style","display: visible;");
   }
   else if (row_2[0] == "O" && row_2[1] == "O" && row_2[2] == "O") {
     display_win = document.getElementById("game_winner");
-    display_win.innerHTML = "X wins"; 
+    display_win.innerHTML = "O wins"; 
     play_again_button = document.getElementById("play_again");
     play_again_button.setAttribute("style","display: visible;");
   }
   else if (row_3[0] == "O" && row_3[1] == "O" && row_3[2] == "O") {
     display_win = document.getElementById("game_winner");
-    display_win.innerHTML = "X wins"; 
+    display_win.innerHTML = "O wins"; 
     play_again_button = document.getElementById("play_again");
     play_again_button.setAttribute("style","display: visible;");
   }
   else if (row_1[0] == "O" && row_2[0] == "O" && row_3[0] == "O") {
     display_win = document.getElementById("game_winner");
-    display_win.innerHTML = "X wins"; 
+    display_win.innerHTML = "O wins"; 
     play_again_button = document.getElementById("play_again");
     play_again_button.setAttribute("style","display: visible;");
   }
   else if (row_1[1] == "O" && row_2[1] == "O" && row_3[1] == "O") {
     display_win = document.getElementById("game_winner");
-    display_win.innerHTML = "X wins";
+    display_win.innerHTML = "O wins";
     play_again_button = document.getElementById("play_again");
     play_again_button.setAttribute("style","display: visible;");
   }
   else if (row_1[2] == "O" && row_2[2] == "O" && row_3[2] == "O") {
     display_win = document.getElementById("game_winner");
-    display_win.innerHTML = "X wins";
+    display_win.innerHTML = "O wins";
     play_again_button = document.getElementById("play_again");
     play_again_button.setAttribute("style","display: visible;");
   }
   else if (row_1[0] == "O" && row_2[1] == "O" && row_3[2] == "O") {
     display_win = document.getElementById("game_winner");
-    display_win.innerHTML = "X wins";
+    display_win.innerHTML = "O wins";
     play_again_button = document.getElementById("play_again");
     play_again_button.setAttribute("style","display: visible;");
   }
   else if (row_3[2] == "O" && row_2[1] == "O" && row_1[0] == "O") {
     display_win = document.getElementById("game_winner");
-    display_win.innerHTML = "X wins";
+    display_win.innerHTML = "O wins";
     play_again_button = document.getElementById("play_again");
     play_again_button.setAttribute("style","display: visible;");
   }

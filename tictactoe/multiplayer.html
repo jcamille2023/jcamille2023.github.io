@@ -78,6 +78,7 @@ onValue(positions, (snapshot) => {
   const button_text = "<button onclick=playWith('"
   const button_text_2 = "')>";
   const button_text_3 = "</button>";
+  list_players.innerHTML = ""
   for (let n = 0; n != list_of_names.length; n++) {
     list_players.innerHTML += button_text + list_of_names[n] + button_text_2 + list_of_names[n] + button_text_3;
   }

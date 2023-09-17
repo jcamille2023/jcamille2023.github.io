@@ -166,26 +166,18 @@ function move(a) {
     
   
 }
-(function () {
-  
-  firebase.auth().onAuthStateChanged((user) => {
-    console.log(user);
-    if (user) {
-      console.log("You're logged in!");
-    }
-    else {
-      console.log("You're logged out.");
-    }
-  });
-
-
-  
-  firebase.auth().signInAnonymously().catch((error) => {
-    var errorCode = error.code;
-    var errorMessage = error.message;
-
-    console.log(errorCode, errorMessaage);
-  });
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    // User is signed in, see docs for a list of available properties
+    // https://firebase.google.com/docs/reference/js/auth.user
+    const uid = user.uid;
+    // ...
+  } else {
+    // User is signed out
+    console.log("User is logged out.")
+    // ...
+  }
+});
 
 
 })();

@@ -55,7 +55,7 @@ setPersistence(auth, browserSessionPersistence)
     const errorCode = error.code;
     const errorMessage = error.message;
   });
-const positions = ref(database, 'positions/' + playerId);
+const positions = ref(database, 'positions/');
 onValue(positions, (snapshot) => {
   const data = snapshot.val();
   

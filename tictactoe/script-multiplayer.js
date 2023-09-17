@@ -166,6 +166,29 @@ function move(a) {
     
   
 }
+(function () {
+  
+  firebase.auth().onAuthStateChanged((user) => {
+    console.log(user);
+    if (user) {
+      console.log("You're logged in!");
+    }
+    else {
+      console.log("You're logged out.");
+    }
+  });
 
-function () {
-  firebase.auth().signInAnonymously()
+
+  
+  firebase.auth().signInAnonymously().catch((error) => {
+    var errorCode = error.code;
+    var errorMessage = error.message;
+
+    console.log(errorCode, errorMessaage);
+  });
+
+
+})();
+
+  
+  

@@ -28,7 +28,7 @@
     // https://firebase.google.com/docs/reference/js/auth.user
     const playerId = user.uid;
     console.log("User is signed in");
-    set(ref(db, 'players/' + playerId), {
+    set(ref(database, 'players/' + playerId), {
     username: playerId,
   });
     console.log(playerId);

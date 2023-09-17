@@ -91,7 +91,11 @@ onValue(positions, (snapshot) => {
   
 });
 
-
+function playWith(a) {
+  var url = new URL("https://jcamille2023.github.io/tictactoe/play");
+  url.searchParams.append('username', a);
+}
+      
 
 
   </script>

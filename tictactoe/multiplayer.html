@@ -65,6 +65,7 @@ setPersistence(auth, browserSessionPersistence)
 const positions = ref(database, 'players/' + playerId);
 onValue(positions, (snapshot) => {
   const data = snapshot.val();
+  console.log(data);
   const list_players = document.getElementById("lists_of_players");
   list_players.innerHTML = data;
   

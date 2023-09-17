@@ -75,7 +75,11 @@ onValue(positions, (snapshot) => {
     
   });
   const list_players = document.getElementById("lists_of_players");
-  list_players.innerHTML = list_of_names;
+  for (n = 0, n = array.length, n++) {
+    list_players.innerHTML += "<button onclick='playWith( " + list_of_names[n] + ")'>" + list_of_names[n] + "</button>";
+  }
+  
+  
   
 });
 
@@ -106,7 +110,9 @@ onValue(positions, (snapshot) => {
 
 <p>Choose a player to play with: </p>
 <br>
-<p id="lists_of_players"></p>
+<div id="lists_of_players">
+  
+</div>
 
 
     

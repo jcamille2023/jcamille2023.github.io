@@ -5,6 +5,8 @@
   </head>
   <body>
     <script type="module">
+
+  const list_of_names = []
     // Import the functions you need from the SDKs you need
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
   import { getAuth, onAuthStateChanged, signInAnonymously, setPersistence, browserSessionPersistence } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
@@ -66,8 +68,13 @@ const positions = ref(database, 'players/');
 onValue(positions, (snapshot) => {
   const data = snapshot.val();
   console.log(data);
+  snapshot.forEach(function(childSnapshot) {
+   var name=childSnapshot.val().username;
+    list_of_names.push(name);
+    
+  });
   const list_players = document.getElementById("lists_of_players");
-  list_players.innerHTML = data;
+  list_players.innerHTML = list_of_names;
   
 });
 

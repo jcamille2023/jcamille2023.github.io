@@ -19,13 +19,19 @@
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
+  const database = getDatabase();
+  let playerId;
+  let playerRef; 
   onAuthStateChanged(auth, (user) => {
   if (user) {
     // User is signed in, see docs for a list of available properties
     // https://firebase.google.com/docs/reference/js/auth.user
-    const uid = user.uid;
+    const playerId = user.uid;
     console.log("User is signed in");
-    console.log(uid);
+    set(ref(db, 'players/' + playerId), {
+    username: playerId,
+  });
+    console.log(playerId);
     // ...
   } else {
     console.log("User is signed out");
@@ -43,3 +49,6 @@ signInAnonymously(auth)
     const errorMessage = error.message;
     // ...
   });
+
+
+

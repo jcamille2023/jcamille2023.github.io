@@ -66,6 +66,7 @@ setPersistence(auth, browserSessionPersistence)
     const errorMessage = error.message;
   });
 const positions = ref(database, 'players/');
+list_of_names = [];
 onValue(positions, (snapshot) => {
   const data = snapshot.val();
   console.log(data);

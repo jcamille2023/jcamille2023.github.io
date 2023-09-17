@@ -35,7 +35,7 @@
     // https://firebase.google.com/docs/reference/js/auth.user
     const playerId = user.uid;
     console.log("User is signed in");
-    set(ref(database, 'players/'), {
+    set(ref(database, 'players/' + playerId), {
     username: playerId,
   });
     console.log(playerId);
@@ -62,7 +62,7 @@ setPersistence(auth, browserSessionPersistence)
     const errorCode = error.code;
     const errorMessage = error.message;
   });
-const positions = ref(database, 'players/' + playerId);
+const positions = ref(database, 'players/');
 onValue(positions, (snapshot) => {
   const data = snapshot.val();
   console.log(data);

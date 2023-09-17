@@ -6,7 +6,7 @@
   <body>
     <script type="module">
 
-  const list_of_names = []
+  const list_of_names = [];
     // Import the functions you need from the SDKs you need
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
   import { getAuth, onAuthStateChanged, signInAnonymously, setPersistence, browserSessionPersistence } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
@@ -41,7 +41,7 @@
     username: playerId,
   });
     console.log(playerId);
-    document.getElementById("user_id").innerHTML = playerId
+    document.getElementById("user_id").innerHTML = playerId;
     // ...
   } else {
     console.log("User is signed out");
@@ -75,13 +75,14 @@ onValue(positions, (snapshot) => {
     
   });
   const list_players = document.getElementById("lists_of_players");
-  for (let n = 0; n = array.length; n++) {
+  for (let n = 0; n == list_of_names.length; n++) {
     list_players.innerHTML += "<button onclick='playWith( " + list_of_names[n] + ")'>" + list_of_names[n] + "</button>";
   }
   
   
   
 });
+
 
 
 

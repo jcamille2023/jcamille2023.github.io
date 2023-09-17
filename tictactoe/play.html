@@ -6,7 +6,7 @@
   <body>
     <script type="module">
       const searchParams = new URLSearchParams(window.location.search);
-      opponent_id = searchParams.get('username'));
+      opponent_id = searchParams.get('username');
       document.getElementById("opponent_id").innerHTML = opponent_id
        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
   import { getAuth, onAuthStateChanged, signInAnonymously, setPersistence, browserSessionPersistence } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";

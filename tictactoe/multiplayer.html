@@ -67,7 +67,15 @@ setPersistence(auth, browserSessionPersistence)
   });
 const positions = ref(database, 'players/');
 list_of_names.length = 0; console.log(list_of_names);
+onValue(positions, (snapshot) => {
+  const data = snapshot.val();
+  console.log(data);
+  snapshot.forEach(function(childSnapshot) {
+   var name=childSnapshot.val().username;
+    list_of_names.push(name);
 
+  });
+  
  
   
   const list_players = document.getElementById("lists_of_players");

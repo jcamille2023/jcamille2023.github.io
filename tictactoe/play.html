@@ -35,13 +35,23 @@
     // User is signed in, see docs for a list of available properties
     // https://firebase.google.com/docs/reference/js/auth.user
     var playerId = user.uid;
+    var gameId = math.floor(math.random() * 9999);
     console.log("User is signed in");
-    set(ref(database, '/games'), {
+    const gamesRef = ref(database, 'games/');
+    onValue(games, (snapshot) => {
+      const data = snapshot.val();
+      var find_game_1 = data.find(item => item.player_2 === playerId);
+      var find_game_2 = data.find(item => item.player_1 === opponent_id);
+      console.log(find_game_1);
+      console.log(find_game_2);
+    });
+    set(ref(database, '/games' + gameId), {
     player_1: playerId,
     player_2: opponent_id,
   });
     console.log(playerId);
     document.getElementById("user_id").innerHTML = playerId;
+    document.getElementById("game_id").innerHTML = gameId;
     // ...
   } else {
     console.log("User is signed out");
@@ -64,7 +74,11 @@ setPersistence(auth, browserSessionPersistence)
     // Handle Errors here.
     const errorCode = error.code;
     const errorMessage = error.message;
-  });   
+  });
+
+  function move_multi(a) {
+    
+  }
   
       
 
@@ -89,47 +103,50 @@ setPersistence(auth, browserSessionPersistence)
 </header>
 
   
-<h1>Tic Tac Toe Online</h1>'
+<h1>Tic Tac Toe Online</h1>
 <p>Your username: </p>
 <p id="user_id"></p>
 
 <p>Your opponent: </p>
 <p id="opponent_id"></p>
 
+<p>Game ID: </p>
+<p id="game_id"></p>
+
 <p id="user_turn">X goes first</p>
 <table>
  
   <tr>
     <td width="33.3%">
-      <button class="box" id="button_1" onclick="move(1)">1</button>
+      <button class="box" id="button_1" onclick="move_multi(1)">1</button>
     </td>
     <td width="33.3%">
-      <button class="box" id="button_2" onclick="move(2)">2</button>
+      <button class="box" id="button_2" onclick="move_multi(2)">2</button>
     </td>
     <td width="33.3%">
-      <button class="box" id="button_3" onclick="move(3)">3</button>
-    </td>
-  </tr>
-  <tr>
-    <td width="33.3%">
-      <button class="box" id="button_4" onclick="move(4)">4</button>
-    </td>
-    <td width="33.3%">
-      <button class="box" id="button_5" onclick="move(5)">5</button>
-    </td>
-    <td width="33.3%">
-      <button class="box" id="button_6" onclick="move(6)">6</button>
+      <button class="box" id="button_3" onclick="move_multi(3)">3</button>
     </td>
   </tr>
   <tr>
     <td width="33.3%">
-      <button class="box" id="button_7" onclick="move(7)">7</button>
+      <button class="box" id="button_4" onclick="move_multi(4)">4</button>
     </td>
     <td width="33.3%">
-      <button class="box" id="button_8" onclick="move(8)">8</button>
+      <button class="box" id="button_5" onclick="move_multi(5)">5</button>
     </td>
     <td width="33.3%">
-      <button class="box" id="button_9" onclick="move(9)">9</button>
+      <button class="box" id="button_6" onclick="move_multi(6)">6</button>
+    </td>
+  </tr>
+  <tr>
+    <td width="33.3%">
+      <button class="box" id="button_7" onclick="move_multi(7)">7</button>
+    </td>
+    <td width="33.3%">
+      <button class="box" id="button_8" onclick="move_multi(8)">8</button>
+    </td>
+    <td width="33.3%">
+      <button class="box" id="button_9" onclick="move_multi(9)">9</button>
     </td>
   </tr>
 </table>

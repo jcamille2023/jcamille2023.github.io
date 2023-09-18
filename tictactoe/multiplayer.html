@@ -85,7 +85,9 @@ onValue(gamesRef, (snapshot) => {
   const button_text_2 = "')>";
   const button_text_3 = "</button>";
   list_players.innerHTML = "";
+  console.log(lists_of_names.length);
   for (let n = 0; n != list_of_games.length; n++) {
+    console.log("hi");
     list_players.innerHTML += button_text + list_of_games[n] + button_text_2 + list_of_games[n] + button_text_3;
   }
 

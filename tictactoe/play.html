@@ -11,12 +11,12 @@
   }
     </script>
     <script type="module">
-      const game_state;
+      const game_state = "";
 
       const searchParams = new URLSearchParams(window.location.search);
       var gameId = searchParams.get('game_id');
       if (gameId == "new") {
-        const game_state = "new";
+        game_state = "new";
         gameId = random_number_gen();
         document.getElementById("game_id").innerHTML = gameId;
       }

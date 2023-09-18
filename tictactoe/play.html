@@ -55,10 +55,10 @@
     var playerId = user.uid;
     console.log(playerId);
     console.log("User is signed in");
-    const gamesRef = ref(database, 'games/');
-    get(child(dbRef, `users/${userId}`)).then((snapshot) => {
+      // const gamesRef = ref(database, 'games/');
+    // get(child(dbRef, "games/" + gameId)).then((snapshot) => {
 
-    });
+    // });
 
     if (game_state == "new") {
     set(ref(database, '/games/' + gameId), {

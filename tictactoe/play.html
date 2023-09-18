@@ -46,7 +46,7 @@
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
   const database = getDatabase();
-  const dbref = ref(getDatabase());
+  const dbRef = ref(getDatabase());
 
   onAuthStateChanged(auth, (user) => {
   if (user) {

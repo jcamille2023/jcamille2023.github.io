@@ -26,6 +26,10 @@
   };
 
   // Initialize Firebase
+
+  function random_number_gen() {
+    return math.floor(math.random() * 9999);
+  }
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
   const database = getDatabase();
@@ -35,7 +39,7 @@
     // User is signed in, see docs for a list of available properties
     // https://firebase.google.com/docs/reference/js/auth.user
     var playerId = user.uid;
-    var gameId = math.floor(math.random() * 9999);
+    var gameId = random_number_gen()
     console.log("User is signed in");
     const gamesRef = ref(database, 'games/');
     onValue(games, (snapshot) => {

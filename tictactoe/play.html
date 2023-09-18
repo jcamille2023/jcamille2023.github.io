@@ -46,7 +46,8 @@
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
   const database = getDatabase();
-  let playerRef; 
+  const dbref = ref(getDatabase());
+
   onAuthStateChanged(auth, (user) => {
   if (user) {
     // User is signed in, see docs for a list of available properties
@@ -55,9 +56,8 @@
     console.log(playerId);
     console.log("User is signed in");
     const gamesRef = ref(database, 'games/');
-    onValue(gamesRef, (snapshot) => {
-      const data = snapshot.val();
-      console.log(data);
+    get(child(dbRef, `users/${userId}`)).then((snapshot) => {
+
     });
 
     if (game_state == "new") {
@@ -66,7 +66,13 @@
     });
     }
     else {
+    get(child(dbRef, '/games/' + gameId)).then((snapshot) => {
+      var existing_data = snapshot.val();
+      console.log(existing_data);
+      var player_1_exist = existing_data['player_1']
+    });  
     set(ref(database, '/games/' + gameId), {
+    player_1: player_1_exist,
     player_2: playerId,
     });
 

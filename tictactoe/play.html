@@ -14,8 +14,8 @@
       
 
       const searchParams = new URLSearchParams(window.location.search);
-      var game_id = searchParams.get('game_id');
-      if (game_id == "new") {
+      var gameId = searchParams.get('game_id');
+      if (gameId == "new") {
         const game_state = "new";
         gameId = random_number_gen();
         document.getElementById("game_id").innerHTML = gameId;

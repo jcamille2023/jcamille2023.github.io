@@ -6,7 +6,7 @@
   <body>
     <script type="module">
 
-  const list_of_names = [];
+  const list_of_games = [];
     // Import the functions you need from the SDKs you need
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
   import { getAuth, onAuthStateChanged, signInAnonymously, setPersistence, browserSessionPersistence } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
@@ -65,16 +65,19 @@ setPersistence(auth, browserSessionPersistence)
     const errorCode = error.code;
     const errorMessage = error.message;
   });
-const positions = ref(database, 'players/');
-list_of_names.length = 0; console.log(list_of_names);
-onValue(positions, (snapshot) => {
-  const data = snapshot.val();
-  console.log(data);
-  snapshot.forEach(function(childSnapshot) {
-   var name=childSnapshot.val().username;
-    list_of_names.push(name);
+
+      
+const gamesRef = ref(database, 'games/');
+onValue(gamesRef, (snapshot) => {
+    const data = snapshot.val();
+    console.log(data);
+    snapshot.forEach(function(childSnapshot) {
+      var name=childSnapshot.val();
+      list_of_games.push(name);
 
   });
+  
+});
   
  
   
@@ -84,7 +87,7 @@ onValue(positions, (snapshot) => {
   const button_text_3 = "</button>";
   list_players.innerHTML = "";
   for (let n = 0; n != list_of_names.length; n++) {
-    list_players.innerHTML += button_text + list_of_names[n] + button_text_2 + list_of_names[n] + button_text_3;
+    list_players.innerHTML += button_text + list_of_games[n] + button_text_2 + list_of_games[n] + button_text_3;
   }
   
   
@@ -98,7 +101,7 @@ onValue(positions, (snapshot) => {
     <script>
       function playWith(a) {
         var url = new URL("https://jcamille2023.github.io/tictactoe/play");
-        url.searchParams.append('username', a);
+        url.searchParams.append('game_id', a);
         console.log(url);
         window.location.href = url;
       }
@@ -126,7 +129,7 @@ onValue(positions, (snapshot) => {
 <p>Your username:</p>
 <p id="user_id"></p>
 
-<p>Choose a player to play with: </p>
+<p>Choose a game to join: </p>
 <br>
 <div id="lists_of_players">
   

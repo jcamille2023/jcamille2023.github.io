@@ -12,8 +12,8 @@
     </script>
     <script type="module">
       const searchParams = new URLSearchParams(window.location.search);
-      var opponent_id = searchParams.get('username');
-      document.getElementById("opponent_id").innerHTML = opponent_id;
+      var game_id = searchParams.get('game_id');
+      document.getElementById("game_id").innerHTML = game_id;
        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
   import { getAuth, onAuthStateChanged, signInAnonymously, setPersistence, browserSessionPersistence } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
   import { getDatabase, set, ref, onValue } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-database.js";
@@ -49,10 +49,7 @@
     onValue(gamesRef, (snapshot) => {
       const data = snapshot.val();
       console.log(data);
-      var find_game_1 = data.find(item => item.player_2 === playerId);
-      var find_game_2 = data.find(item => item.player_1 === opponent_id);
-      console.log(find_game_1);
-      console.log(find_game_2);
+      
     });
     set(ref(database, '/games/' + gameId), {
     player_1: playerId,

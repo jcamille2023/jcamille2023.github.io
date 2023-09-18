@@ -16,7 +16,9 @@
       const searchParams = new URLSearchParams(window.location.search);
       var game_id = searchParams.get('game_id');
       if (game_id == "new") {
-        var gameId = random_number_gen();
+        const game_state == "new";
+        gameId = random_number_gen();
+        document.getElementById("game_id").innerHTML = gameId;
       }
       else {
         document.getElementById("game_id").innerHTML = gameId;
@@ -58,7 +60,7 @@
       console.log(data);
     });
 
-    if (gameId != "new") {
+    if (game_state == "new") {
     set(ref(database, '/games/' + gameId)), {
     player_1: playerId,
     }

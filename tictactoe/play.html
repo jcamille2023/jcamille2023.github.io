@@ -46,7 +46,7 @@
     var gameId = random_number_gen()
     console.log("User is signed in");
     const gamesRef = ref(database, 'games/');
-    onValue(games, (snapshot) => {
+    onValue(gamesRef, (snapshot) => {
       const data = snapshot.val();
       var find_game_1 = data.find(item => item.player_2 === playerId);
       var find_game_2 = data.find(item => item.player_1 === opponent_id);

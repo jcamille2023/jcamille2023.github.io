@@ -13,7 +13,12 @@
     <script type="module">
       const searchParams = new URLSearchParams(window.location.search);
       var game_id = searchParams.get('game_id');
-      document.getElementById("game_id").innerHTML = game_id;
+      if (game_id == "new") {
+        var gameId = random_number_gen();
+      }
+      else {
+        document.getElementById("game_id").innerHTML = gameId;
+      }
        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
   import { getAuth, onAuthStateChanged, signInAnonymously, setPersistence, browserSessionPersistence } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
   import { getDatabase, set, ref, onValue } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-database.js";
@@ -43,21 +48,29 @@
     // User is signed in, see docs for a list of available properties
     // https://firebase.google.com/docs/reference/js/auth.user
     var playerId = user.uid;
-    var gameId = random_number_gen()
+    
     console.log("User is signed in");
     const gamesRef = ref(database, 'games/');
     onValue(gamesRef, (snapshot) => {
       const data = snapshot.val();
       console.log(data);
-      
     });
+
+    if (gameId != "new") {
     set(ref(database, '/games/' + gameId), {
     player_1: playerId,
-    player_2: opponent_id,
+    }
+    }
+    else {
+    set(ref(database, '/games/' + gameId), {
+    player_2: playerId,
+    }
+
+        
   });
     console.log(playerId);
     document.getElementById("user_id").innerHTML = playerId;
-    document.getElementById("game_id").innerHTML = gameId;
+    
     // ...
   } else {
     console.log("User is signed out");

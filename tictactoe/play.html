@@ -7,7 +7,7 @@
     <script type="module">
       const searchParams = new URLSearchParams(window.location.search);
       var opponent_id = searchParams.get('username');
-      document.getElementById("opponent_id").innerHTML = opponent_id
+      document.getElementById("opponent_id").innerHTML = opponent_id;
        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
   import { getAuth, onAuthStateChanged, signInAnonymously, setPersistence, browserSessionPersistence } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
   import { getDatabase, set, ref, onValue } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-database.js";
@@ -34,7 +34,7 @@
   if (user) {
     // User is signed in, see docs for a list of available properties
     // https://firebase.google.com/docs/reference/js/auth.user
-    playerId = user.uid;
+    var playerId = user.uid;
     console.log("User is signed in");
     set(ref(database, '/games'), {
     player_1: playerId,
@@ -64,7 +64,7 @@ setPersistence(auth, browserSessionPersistence)
     // Handle Errors here.
     const errorCode = error.code;
     const errorMessage = error.message;
-  });  
+  });   
   
       
 
@@ -89,7 +89,9 @@ setPersistence(auth, browserSessionPersistence)
 </header>
 
   
-<h1>Tic Tac Toe Online</h1>
+<h1>Tic Tac Toe Online</h1>'
+<p>Your username: </p>
+<p id="user_id"></p>
 
 <p>Your opponent: </p>
 <p id="opponent_id"></p>

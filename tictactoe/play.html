@@ -48,6 +48,7 @@
     const gamesRef = ref(database, 'games/');
     onValue(gamesRef, (snapshot) => {
       const data = snapshot.val();
+      console.log(data);
       var find_game_1 = data.find(item => item.player_2 === playerId);
       var find_game_2 = data.find(item => item.player_1 === opponent_id);
       console.log(find_game_1);

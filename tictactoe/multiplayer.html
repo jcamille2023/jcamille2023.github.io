@@ -81,12 +81,12 @@ onValue(gamesRef, (snapshot) => {
   
  
   
-  const list_players = document.getElementById("lists_of_players");
+  const list_players = document.getElementById("lists_of_games");
   const button_text = "<button onclick=playWith('";
   const button_text_2 = "')>";
   const button_text_3 = "</button>";
   list_players.innerHTML = "";
-  for (let n = 0; n != list_of_names.length; n++) {
+  for (let n = 0; n != list_of_games.length; n++) {
     list_players.innerHTML += button_text + list_of_games[n] + button_text_2 + list_of_games[n] + button_text_3;
   }
 
@@ -128,9 +128,12 @@ onValue(gamesRef, (snapshot) => {
 
 <p>Choose a game to join: </p>
 <br>
-<div id="lists_of_players">
+<div id="lists_of_games">
   
 </div>
+<p>Or create a new game:</p>
+<button onclick="playWith('new')">New game</button>
+    
 
 
     

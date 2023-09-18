@@ -72,7 +72,7 @@ const gamesRef = ref(database, 'games/');
 onValue(gamesRef, (snapshot) => {
     const data = snapshot.val();
     console.log(data);
-    list_of_games = Object.keys(data));
+    list_of_games = Object.keys(data);
 
   });
   

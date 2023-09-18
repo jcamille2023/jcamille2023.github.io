@@ -61,14 +61,14 @@
     });
 
     if (game_state == "new") {
-    set(ref(database, '/games/' + gameId)), {
+    set(ref(database, '/games/' + gameId), {
     player_1: playerId,
-    }
+    )};
     }
     else {
-    set(ref(database, '/games/' + gameId)), {
+    set(ref(database, '/games/' + gameId), {
     player_2: playerId,
-    }
+    });
 
         
   }

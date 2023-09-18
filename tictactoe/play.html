@@ -4,6 +4,12 @@
     <title>Tic Tac Toe</title>
   </head>
   <body>
+    <script>
+
+      function random_number_gen() {
+    return math.floor(math.random() * 9999);
+  }
+    </script>
     <script type="module">
       const searchParams = new URLSearchParams(window.location.search);
       var opponent_id = searchParams.get('username');
@@ -27,9 +33,7 @@
 
   // Initialize Firebase
 
-  function random_number_gen() {
-    return math.floor(math.random() * 9999);
-  }
+  
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
   const database = getDatabase();

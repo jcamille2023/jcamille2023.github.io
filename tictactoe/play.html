@@ -54,7 +54,7 @@
       console.log(find_game_1);
       console.log(find_game_2);
     });
-    set(ref(database, '/games' + gameId), {
+    set(ref(database, '/games/' + gameId), {
     player_1: playerId,
     player_2: opponent_id,
   });

@@ -139,6 +139,7 @@ setPersistence(auth, browserSessionPersistence)
     get(child(dbRef, '/games/' + gameId + "positions")).then((snapshot) => {
       var existing_data = snapshot.val();
       console.log(existing_data);
+    });
       
     set(ref(database, '/games/' + gameId + "positions"), {
     a: playerId,    

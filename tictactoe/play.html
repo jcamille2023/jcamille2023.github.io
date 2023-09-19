@@ -47,9 +47,17 @@
   const auth = getAuth(app);
   const database = getDatabase();
   const dbRef = ref(getDatabase());
-  function display_opponent(a,b) {
+  function display_opponent(a,b,c) { // a is opponent ID, b is player_1 (user turn purposes), c is the user's computer
     document.getElementById("opponent_id").innerHTML = a;
-    document.getElementById("user_turn").innerHTML += "(" + b + ")";
+    document.getElementById("user_turn").innerHTML += " (" + b + ")";
+    if (b == c) { // if the user is player_1
+      for (let n = 1; n != 10; n++) { 
+        let b = n.toString();
+        var button_id = "button_" + b;     
+        var button_function = "move_multi(" + b + ")"; 
+        document.getElementById(button_id).setAttribute("onclick",button_function); 
+      }
+    }
   }
   function add_players(a,b) {
     console.log(a);
@@ -80,7 +88,7 @@
     onValue(gamesRef, (snapshot) => {
       var data = snapshot.val();
       var opponentId = data['player_2'];
-      display_opponent(opponentId,playerId);
+      display_opponent(opponentId,playerId,playerId);
       
   });
       
@@ -91,7 +99,7 @@
       console.log(existing_data);
       player_1_exist = existing_data['player_1'];
       add_players(player_1_exist,playerId);
-      display_opponent(player_1_exist,player_1_exist);
+      display_opponent(player_1_exist,player_1_exist,playerId);
     });  
     
 
@@ -162,35 +170,35 @@ setPersistence(auth, browserSessionPersistence)
  
   <tr>
     <td width="33.3%">
-      <button class="box" id="button_1" onclick="move_multi(1)">1</button>
+      <button class="box" id="button_1" onclick="">1</button>
     </td>
     <td width="33.3%">
-      <button class="box" id="button_2" onclick="move_multi(2)">2</button>
+      <button class="box" id="button_2" onclick="">2</button>
     </td>
     <td width="33.3%">
-      <button class="box" id="button_3" onclick="move_multi(3)">3</button>
-    </td>
-  </tr>
-  <tr>
-    <td width="33.3%">
-      <button class="box" id="button_4" onclick="move_multi(4)">4</button>
-    </td>
-    <td width="33.3%">
-      <button class="box" id="button_5" onclick="move_multi(5)">5</button>
-    </td>
-    <td width="33.3%">
-      <button class="box" id="button_6" onclick="move_multi(6)">6</button>
+      <button class="box" id="button_3" onclick="">3</button>
     </td>
   </tr>
   <tr>
     <td width="33.3%">
-      <button class="box" id="button_7" onclick="move_multi(7)">7</button>
+      <button class="box" id="button_4" onclick=")">4</button>
     </td>
     <td width="33.3%">
-      <button class="box" id="button_8" onclick="move_multi(8)">8</button>
+      <button class="box" id="button_5" onclick="">5</button>
     </td>
     <td width="33.3%">
-      <button class="box" id="button_9" onclick="move_multi(9)">9</button>
+      <button class="box" id="button_6" onclick="">6</button>
+    </td>
+  </tr>
+  <tr>
+    <td width="33.3%">
+      <button class="box" id="button_7" onclick="">7</button>
+    </td>
+    <td width="33.3%">
+      <button class="box" id="button_8" onclick="">8</button>
+    </td>
+    <td width="33.3%">
+      <button class="box" id="button_9" onclick="">9</button>
     </td>
   </tr>
 </table>

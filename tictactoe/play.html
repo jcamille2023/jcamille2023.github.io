@@ -47,11 +47,12 @@
   const auth = getAuth(app);
   const database = getDatabase();
   const dbRef = ref(getDatabase());
-  function add_player_1(a) {
-    console.log(a)
+  function add_player_1(a,b) {
+    console.log(a);
+    console.log(b);
     set(ref(database, '/games/' + gameId), {
     player_1: a,
-    player_2: playerId,
+    player_2: b,
     });
   }
 
@@ -77,7 +78,7 @@
       var existing_data = snapshot.val();
       console.log(existing_data);
       player_1_exist = existing_data['player_1'];
-      add_player_1(player_1_exist);
+      add_players(player_1_exist,playerId);
     });  
     
 

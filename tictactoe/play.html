@@ -135,7 +135,7 @@ setPersistence(auth, browserSessionPersistence)
     const errorMessage = error.message;
   });
 
-  function move_multi(a) {
+  function send_to_database(a) {
     get(child(dbRef, '/games/' + gameId + "positions")).then((snapshot) => {
       var existing_data = snapshot.val();
       console.log(existing_data);
@@ -150,7 +150,11 @@ setPersistence(auth, browserSessionPersistence)
     </script>
     
     <script type="text/javascript" src="./script-multiplayer.js" type="text/javascript"></script>
-    
+    <script>
+      function move_multi(a) {
+        send_to_database(a);
+      }
+    </script>
 
   
 

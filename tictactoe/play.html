@@ -47,7 +47,7 @@
   const auth = getAuth(app);
   const database = getDatabase();
   const dbRef = ref(getDatabase());
-  function add_player_1(a,b) {
+  function add_players(a,b) {
     console.log(a);
     console.log(b);
     set(ref(database, '/games/' + gameId), {

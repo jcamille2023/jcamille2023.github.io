@@ -1,9 +1,24 @@
-<html>
+ <html>
   <head>
     <link rel="stylesheet" href="./style.css">
     <title>Tic Tac Toe</title>
   </head>
   <body>
+
+    <script>
+    function print_games(a) {
+      const list_players = document.getElementById("lists_of_games");
+      const button_text = "<button onclick=playWith('";
+      const button_text_2 = "')>";
+      const button_text_3 = "</button>";
+      list_players.innerHTML = "";
+      console.log(a.length);
+      for (let n = 0; n != list_of_games.length; n++) {
+        console.log("hi");
+        list_players.innerHTML += button_text + a[n] + button_text_2 + a[n] + button_text_3;
+      }
+    }      
+    </script>
     <script type="module">
 
   var list_of_games = [];
@@ -74,22 +89,13 @@ onValue(gamesRef, (snapshot) => {
     console.log(data);
     console.log(Object.keys(data));
     list_of_games = Object.keys(data);
-
+    console.log(list_of_games);
   });
-  
+  print_games(list_of_games);
   
  
   
-  const list_players = document.getElementById("lists_of_games");
-  const button_text = "<button onclick=playWith('";
-  const button_text_2 = "')>";
-  const button_text_3 = "</button>";
-  list_players.innerHTML = "";
-  console.log(lists_of_games.length);
-  for (let n = 0; n != list_of_games.length; n++) {
-    console.log("hi");
-    list_players.innerHTML += button_text + list_of_games[n] + button_text_2 + list_of_games[n] + button_text_3;
-  }
+  
 
       
 
@@ -103,6 +109,7 @@ onValue(gamesRef, (snapshot) => {
         console.log(url);
         window.location.href = url;
       }
+    
       
     </script>
     <script type="text/javascript" src="./script-multiplayer.js" type="text/javascript"></script>

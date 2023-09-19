@@ -47,6 +47,10 @@
   const auth = getAuth(app);
   const database = getDatabase();
   const dbRef = ref(getDatabase());
+  function display_opponent(a,b) {
+    document.getElementById("opponent_id").innerHTML = a;
+    document.getElementById("user_turn").innerHTML += "(" + b + ")";
+  }
   function add_players(a,b) {
     console.log(a);
     console.log(b);
@@ -72,6 +76,14 @@
     set(ref(database, '/games/' + gameId), {
     player_1: playerId,
     });
+    const gamesRef = ref(database, 'games/' + gameId);
+    onValue(gamesRef, (snapshot) => {
+      var data = snapshot.val();
+      var opponentId = data['player_2'];
+      display_opponent(opponentId,playerId);
+      
+  });
+      
     }
     else {
     get(child(dbRef, '/games/' + gameId)).then((snapshot) => {
@@ -79,6 +91,7 @@
       console.log(existing_data);
       player_1_exist = existing_data['player_1'];
       add_players(player_1_exist,playerId);
+      display_opponent(player_1_exist,player_1_exist);
     });  
     
 
@@ -112,6 +125,7 @@ setPersistence(auth, browserSessionPersistence)
   });
 
   function move_multi(a) {
+    
     
   }
     </script>

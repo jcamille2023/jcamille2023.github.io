@@ -7,6 +7,10 @@
     <script>
       var playerId = ""
 
+      function back_to_lobby() {
+        window.location.href('./multiplayer');
+      }
+
       function random_number_gen() {
     return Math.floor(Math.random() * 9999);
   }
@@ -135,7 +139,7 @@ setPersistence(auth, browserSessionPersistence)
     const errorMessage = error.message;
   });
 
-  function send_to_database(a) {
+  function move_multi(a) {
     get(child(dbRef, '/games/' + gameId + "positions")).then((snapshot) => {
       var existing_data = snapshot.val();
       console.log(existing_data);
@@ -146,15 +150,10 @@ setPersistence(auth, browserSessionPersistence)
     });
     
   }
-      window.move_multi() = move_multi()
+      window.move_multi = move_multi;
     </script>
     
     <script type="text/javascript" src="./script-multiplayer.js" type="text/javascript"></script>
-    <script>
-      function move_multi(a) {
-        send_to_database(a);
-      }
-    </script>
 
   
 
@@ -219,7 +218,7 @@ setPersistence(auth, browserSessionPersistence)
 </table>
   <p id="game_winner"></p>
   <button style="display: none" onclick="play_again()" id="play_again">Play again?</button>
-  <button onclick="window.location.href('./multiplayer')">Back to lobby</button>
+  <button onclick="back_to_lobby">Back to lobby</button>
 
     
   </body>

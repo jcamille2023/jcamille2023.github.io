@@ -16,14 +16,17 @@
   }
     </script>
     <script type="module">
-
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signInAnonymously, setPersistence, browserSessionPersistence } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
+    import { getDatabase, set, ref, onValue, get,child } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-database.js";
+  
       function change_values(a,c,d) {
         player_Turn = document.getElementById("user_turn").innerHTML;
         x_or_o = Array.from(player_Turn)[0];
         
         
         for (let n = 0; n != 9; n++) {
-          b = n.toString()
+          b = n.toString();
           button_id = "button_" + b;
           if (n in a) {
             document.getElementById(button_id).innerHTML = x_or_o;
@@ -34,23 +37,23 @@
 
         if (x_or_o == "X") {
           if (player_Turn.slice(16,43) == c) {
-            document.getElementById("user_turn").innerHTML = "O's turn (" + d + ")"
+            document.getElementById("user_turn").innerHTML = "O's turn (" + d + ")";
           }
           else {
-            document.getElementById("user_turn").innerHTML = "O's turn (" + c + ")"
+            document.getElementById("user_turn").innerHTML = "O's turn (" + c + ")";
           }
           
         }
         else {
           if (player_Turn.slice(16,43) == c) {
-            document.getElementById("user_turn").innerHTML = "X's turn (" + d + ")"
+            document.getElementById("user_turn").innerHTML = "X's turn (" + d + ")";
           }
           else {
-            document.getElementById("user_turn").innerHTML = "X's turn (" + c + ")"
+            document.getElementById("user_turn").innerHTML = "X's turn (" + c + ")";
         }
       }
       var game_state = "";
-      var positions_filled = {}
+      var positions_filled = {};
 
       const searchParams = new URLSearchParams(window.location.search);
       var gameId = searchParams.get('game_id');
@@ -62,9 +65,7 @@
       else {
         document.getElementById("game_id").innerHTML = gameId;
       }
-       import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
-  import { getAuth, onAuthStateChanged, signInAnonymously, setPersistence, browserSessionPersistence } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
-  import { getDatabase, set, ref, onValue, get,child } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-database.js";
+  
   // TODO: Add SDKs for Firebase products that you want to use
   // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -130,6 +131,7 @@
       var data = snapshot.val();
       var opponentId = data['player_2'];
       display_opponent(opponentId,playerId,playerId);
+      });
 
     const turnRef = ref(database, 'games/' + gameId + '/turn');
     onValue(turnRef, (snapshot) => {
@@ -137,7 +139,7 @@
       
   });
       
-    }
+    })
     else {
     player_2 = player_Id;
     get(child(dbRef, '/games/' + gameId)).then((snapshot) => {
@@ -213,11 +215,6 @@ setPersistence(auth, browserSessionPersistence)
     });
 
     change_turn(player_1_exist, player_2);
-
-    
-    
-    
-    
   }
       window.move_multi = move_multi;
     </script>

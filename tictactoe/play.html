@@ -139,14 +139,25 @@ setPersistence(auth, browserSessionPersistence)
     const errorMessage = error.message;
   });
 
+  var positions_filled = {}
   function move_multi(a) {
-    get(child(dbRef, '/games/' + gameId + "positions")).then((snapshot) => {
+    var scope = this;
+
+    scope.positions_filled = { value: playerId };
+    scope.anObjectName = a;
+    scope[scope.anObjectName].value++;
+
+    console.log(scope.myObject.value);
+    console.log(positions_filled);
+    
+    get(child(dbRef, '/games/' + gameId + "/positions")).then((snapshot) => {
       var existing_data = snapshot.val();
       console.log(existing_data);
+      positions_filled = existing_data['positions'];
     });
       
-    set(ref(database, '/games/' + gameId + "positions"), {
-    a: playerId,    
+    set(ref(database, '/games/' + gameId + "/positions"), {
+    positions: positions_filled; 
     });
     
   }

@@ -141,13 +141,7 @@ setPersistence(auth, browserSessionPersistence)
 
   var positions_filled = {}
   function move_multi(a) {
-    var scope = this;
-
-    scope.positions_filled = { value: playerId };
-    scope.anObjectName = a;
-    scope[scope.anObjectName].value++;
-
-    console.log(scope.myObject.value);
+    positions_filled[a] = playerId;
     console.log(positions_filled);
     
     get(child(dbRef, '/games/' + gameId + "/positions")).then((snapshot) => {

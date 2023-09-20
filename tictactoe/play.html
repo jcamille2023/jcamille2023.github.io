@@ -135,10 +135,8 @@
 
     const turnRef = ref(database, 'games/' + gameId + '/turn');
     onValue(turnRef, (snapshot) => {
-      
-      
+  
   });
-      
     }
     else {
     player_2 = player_Id;
@@ -161,6 +159,7 @@
       var data = snapshot.val();
       var positions = data['positions'];
       change_values(positions,playerId,opponentId);
+    });
     
     // ...
   } else {

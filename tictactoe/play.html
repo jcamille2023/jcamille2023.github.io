@@ -16,7 +16,41 @@
   }
     </script>
     <script type="module">
+
+      function change_values(a,c,d) {
+        player_Turn = document.getElementById("user_turn").innerHTML;
+        x_or_o = Array.from(player_Turn)[0];
+        
+        
+        for (let n = 0; n != 9; n++) {
+          b = n.toString()
+          button_id = "button_" + b;
+          if (n in a) {
+            document.getElementById(button_id).innerHTML = x_or_o;
+            document.getElementById(button_id).setAttribute("onclick","");
+            
+          }
+        }
+
+        if (x_or_o == "X") {
+          if (player_Turn.slice(16,43) == c) {
+            document.getElementById("user_turn").innerHTML = "O's turn (" + d + ")"
+          }
+          else {
+            document.getElementById("user_turn").innerHTML = "O's turn (" + c + ")"
+          }
+          
+        }
+        else {
+          if (player_Turn.slice(16,43) == c) {
+            document.getElementById("user_turn").innerHTML = "X's turn (" + d + ")"
+          }
+          else {
+            document.getElementById("user_turn").innerHTML = "X's turn (" + c + ")"
+        }
+      }
       var game_state = "";
+      var positions_filled = {}
 
       const searchParams = new URLSearchParams(window.location.search);
       var gameId = searchParams.get('game_id');
@@ -46,7 +80,7 @@
   };
 
   // Initialize Firebase
-  var player_1_exist = ""
+  var player_1_exist = "";
   
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
@@ -87,20 +121,25 @@
     // });
 
     if (game_state == "new") {
+    player_1 = playerId;
     set(ref(database, '/games/' + gameId), {
     player_1: playerId,
-    turn: playerId,
     });
     const gamesRef = ref(database, 'games/' + gameId);
     onValue(gamesRef, (snapshot) => {
       var data = snapshot.val();
       var opponentId = data['player_2'];
       display_opponent(opponentId,playerId,playerId);
+
+    const turnRef = ref(database, 'games/' + gameId + '/turn');
+    onValue(turnRef, (snapshot) => {
+      
       
   });
       
     }
     else {
+    player_2 = player_Id;
     get(child(dbRef, '/games/' + gameId)).then((snapshot) => {
       var existing_data = snapshot.val();
       console.log(existing_data);
@@ -112,8 +151,14 @@
 
         
   }
+    
     console.log(playerId);
     document.getElementById("user_id").innerHTML = playerId;
+    const positionsRef = ref(database, 'games/' + gameId + '/positions');
+    onValue(positionsRef, (snapshot) => {
+      var data = snapshot.val();
+      var positions = data['positions'];
+      change_values(positions,playerId,opponentId);
     
     // ...
   } else {
@@ -139,7 +184,20 @@ setPersistence(auth, browserSessionPersistence)
     const errorMessage = error.message;
   });
 
-  var positions_filled = {}
+  function change_turn(a,b) {
+    if (player_Turn.slice(16,43) == a) {
+      c = a;
+    }
+    else {
+      c = b;
+    }
+    
+    set(ref(database, '/games/' + gameId), {
+    player_1: a,
+    player_2: b,
+    turn: c,
+    });
+  }
   function move_multi(a) {
     positions_filled[a] = playerId;
     console.log(positions_filled);
@@ -153,6 +211,12 @@ setPersistence(auth, browserSessionPersistence)
     set(ref(database, '/games/' + gameId + "/positions"), {
     positions: positions_filled, 
     });
+
+    change_turn(player_1_exist, player_2);
+
+    
+    
+    
     
   }
       window.move_multi = move_multi;

@@ -5,7 +5,7 @@
   </head>
   <body>
     <script>
-      var playerId = ""
+      
 
       function back_to_lobby() {
         window.location.href('./multiplayer');
@@ -16,6 +16,7 @@
   }
     </script>
     <script type="module">
+    var playerId = ""
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
     import { getAuth, onAuthStateChanged, signInAnonymously, setPersistence, browserSessionPersistence } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
     import { getDatabase, set, ref, onValue, get,child } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-database.js";

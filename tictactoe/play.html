@@ -16,7 +16,7 @@
   }
     </script>
     <script type="module">
-    var playerId = ""
+    var playerId = "";
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
     import { getAuth, onAuthStateChanged, signInAnonymously, setPersistence, browserSessionPersistence } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
     import { getDatabase, set, ref, onValue, get,child } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-database.js";
@@ -141,7 +141,7 @@
   });
     }
     else {
-    player_2 = player_Id;
+    player_2 = playerId;
     get(child(dbRef, '/games/' + gameId)).then((snapshot) => {
       var existing_data = snapshot.val();
       console.log(existing_data);

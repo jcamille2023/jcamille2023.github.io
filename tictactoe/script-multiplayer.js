@@ -1,173 +1,204 @@
-const row_1 = [0,1,2];
-const row_2 = [0,1,2];
-const row_3 = [0,1,2];
-var turn_counter = 0;
+    var playerId = "";
+    var player_1 = "";
+    var player_2 = "";
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signInAnonymously, setPersistence, browserSessionPersistence } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
+    import { getDatabase, set, ref, onValue, get,child } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-database.js";
+  
+      function change_values(a,c,d) {
+        player_Turn = document.getElementById("user_turn").innerHTML;
+        x_or_o = Array.from(player_Turn)[0];
+        
+        
+        for (let n = 0; n != 9; n++) {
+          b = n.toString();
+          button_id = "button_" + b;
+          if (n in a) {
+            document.getElementById(button_id).innerHTML = x_or_o;
+            document.getElementById(button_id).setAttribute("onclick","");
+            
+          }
+        }
 
+        if (x_or_o == "X") {
+          if (player_Turn.slice(16,43) == c) {
+            document.getElementById("user_turn").innerHTML = "O's turn (" + d + ")";
+          }
+          else {
+            document.getElementById("user_turn").innerHTML = "O's turn (" + c + ")";
+          }
+          
+        }
+        else {
+          if (player_Turn.slice(16,43) == c) {
+            document.getElementById("user_turn").innerHTML = "X's turn (" + d + ")";
+          }
+          else {
+            document.getElementById("user_turn").innerHTML = "X's turn (" + c + ")";
+        }
+      }
+      }
+      var game_state = "";
+      var positions_filled = {};
 
-function play_again() {
-  location.reload();
-}
+      const searchParams = new URLSearchParams(window.location.search);
+      var gameId = searchParams.get('game_id');
+      if (gameId == "new") {
+        game_state = "new";
+        gameId = random_number_gen();
+        document.getElementById("game_id").innerHTML = gameId;
+      }
+      else {
+        document.getElementById("game_id").innerHTML = gameId;
+      }
+  
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
 
-function checkWin() {
-  if (row_1[0] == "X" && row_1[1] == "X" && row_1[2] == "X") {
-    var display_win = document.getElementById("game_winner");
-    display_win.innerHTML = "X wins";
-    play_again_button = document.getElementById("play_again");
-    play_again_button.setAttribute("style","display: visible;");
-  } 
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyDkf2Xme8vIYwSjNgpikMPlHETkteqEsfI",
+    authDomain: "tic-tac-toe-online-108ca.firebaseapp.com",
+    databaseURL: "https://tic-tac-toe-online-108ca-default-rtdb.firebaseio.com",
+    projectId: "tic-tac-toe-online-108ca",
+    storageBucket: "tic-tac-toe-online-108ca.appspot.com",
+    messagingSenderId: "971654471519",
+    appId: "1:971654471519:web:3e05a829c5db81a4f920ea"
+  };
+
+  // Initialize Firebase
+  var player_1_exist = "";
   
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const database = getDatabase();
+  const dbRef = ref(getDatabase());
+  function display_opponent(a,b,c) { // a is opponent ID, b is player_1 (user turn purposes), c is the user's computer
+    document.getElementById("opponent_id").innerHTML = a;
+    document.getElementById("user_turn").innerHTML += " (" + b + ")";
+    if (b == c) { // if the user is player_1
+      for (let n = 1; n != 10; n++) { 
+        let b = n.toString();
+        var button_id = "button_" + b;     
+        var button_function = "move_multi(" + b + ")"; 
+        document.getElementById(button_id).setAttribute("onclick",button_function); 
+      }
+    }
+  }
+  function add_players(a,b) {
+    console.log(a);
+    console.log(b);
+    set(ref(database, '/games/' + gameId), {
+    player_1: a,
+    player_2: b,
+    turn: a,
+    });
+  }
+
+  onAuthStateChanged(auth, (user) => {
+  if (user) {
+    // User is signed in, see docs for a list of available properties
+    // https://firebase.google.com/docs/reference/js/auth.user
+    playerId = user.uid;
+    console.log(playerId);
+    console.log("User is signed in");
+      // const gamesRef = ref(database, 'games/');
+    // get(child(dbRef, "games/" + gameId)).then((snapshot) => {
+
+    // });
+
+    if (game_state == "new") {
+    player_1 = playerId;
+    set(ref(database, '/games/' + gameId), {
+    player_1: playerId,
+    });
+    const gamesRef = ref(database, 'games/' + gameId);
+    onValue(gamesRef, (snapshot) => {
+      var data = snapshot.val();
+      var opponentId = data['player_2'];
+      display_opponent(opponentId,playerId,playerId);
+      });
+
+    const turnRef = ref(database, 'games/' + gameId + '/turn');
+    onValue(turnRef, (snapshot) => {
   
-  else if (row_2[0] == "X" && row_2[1] == "X" && row_2[2] == "X") {
-    display_win = document.getElementById("game_winner");
-    display_win.innerHTML = "X wins"; 
-    play_again_button = document.getElementById("play_again");
-    play_again_button.setAttribute("style","display: visible;");
-  } 
-  else if (row_3[0] == "X" && row_3[1] == "X" && row_3[2] == "X") {
-    display_win = document.getElementById("game_winner");
-    display_win.innerHTML = "X wins"; 
-    play_again_button = document.getElementById("play_again");
-    play_again_button.setAttribute("style","display: visible;");
-  } 
-  
-  
-  else if (row_1[0] == "X" && row_2[0] == "X" && row_3[0] == "X") {
-    display_win = document.getElementById("game_winner");
-    display_win.innerHTML = "X wins"; 
-    play_again_button = document.getElementById("play_again");
-    play_again_button.setAttribute("style","display: visible;");
-  } 
-  
-  else if (row_1[1] == "X" && row_2[1] == "X" && row_3[1] == "X") {
-    display_win = document.getElementById("game_winner");
-    display_win.innerHTML = "X wins"; 
-    play_again_button = document.getElementById("play_again");
-    play_again_button.setAttribute("style","display: visible;");
-  }
-  else if (row_1[2] == "X" && row_2[2] == "X" && row_3[2] == "X") {
-    display_win = document.getElementById("game_winner");
-    display_win.innerHTML = "X wins"; 
-    play_again_button = document.getElementById("play_again");
-    play_again_button.setAttribute("style","display: visible;");
-  }
-  else if (row_1[0] == "X" && row_2[1] == "X" && row_3[2] == "X") {
-    display_win = document.getElementById("game_winner");
-    display_win.innerHTML = "X wins"; 
-    play_again_button = document.getElementById("play_again");
-    play_again_button.setAttribute("style","display: visible;");
-  }
-  else if (row_3[2] == "X" && row_2[1] == "X" && row_1[0] == "X") {
-    display_win = document.getElementById("game_winner");
-    display_win.innerHTML = "X wins";
-    play_again_button = document.getElementById("play_again");
-    play_again_button.setAttribute("style","display: visible;");
-  }
-  else if (row_1[0] == "O" && row_1[1] == "O" && row_1[2] == "O") {
-    display_win = document.getElementById("game_winner");
-    display_win.innerHTML = "O wins";
-    play_again_button = document.getElementById("play_again");
-    play_again_button.setAttribute("style","display: visible;");
-  }
-  else if (row_2[0] == "O" && row_2[1] == "O" && row_2[2] == "O") {
-    display_win = document.getElementById("game_winner");
-    display_win.innerHTML = "O wins"; 
-    play_again_button = document.getElementById("play_again");
-    play_again_button.setAttribute("style","display: visible;");
-  }
-  else if (row_3[0] == "O" && row_3[1] == "O" && row_3[2] == "O") {
-    display_win = document.getElementById("game_winner");
-    display_win.innerHTML = "O wins"; 
-    play_again_button = document.getElementById("play_again");
-    play_again_button.setAttribute("style","display: visible;");
-  }
-  else if (row_1[0] == "O" && row_2[0] == "O" && row_3[0] == "O") {
-    display_win = document.getElementById("game_winner");
-    display_win.innerHTML = "O wins"; 
-    play_again_button = document.getElementById("play_again");
-    play_again_button.setAttribute("style","display: visible;");
-  }
-  else if (row_1[1] == "O" && row_2[1] == "O" && row_3[1] == "O") {
-    display_win = document.getElementById("game_winner");
-    display_win.innerHTML = "O wins";
-    play_again_button = document.getElementById("play_again");
-    play_again_button.setAttribute("style","display: visible;");
-  }
-  else if (row_1[2] == "O" && row_2[2] == "O" && row_3[2] == "O") {
-    display_win = document.getElementById("game_winner");
-    display_win.innerHTML = "O wins";
-    play_again_button = document.getElementById("play_again");
-    play_again_button.setAttribute("style","display: visible;");
-  }
-  else if (row_1[0] == "O" && row_2[1] == "O" && row_3[2] == "O") {
-    display_win = document.getElementById("game_winner");
-    display_win.innerHTML = "O wins";
-    play_again_button = document.getElementById("play_again");
-    play_again_button.setAttribute("style","display: visible;");
-  }
-  else if (row_3[2] == "O" && row_2[1] == "O" && row_1[0] == "O") {
-    display_win = document.getElementById("game_winner");
-    display_win.innerHTML = "O wins";
-    play_again_button = document.getElementById("play_again");
-    play_again_button.setAttribute("style","display: visible;");
+  });
+    }
+    else {
+    player_2 = playerId;
+    get(child(dbRef, '/games/' + gameId)).then((snapshot) => {
+      var existing_data = snapshot.val();
+      console.log(existing_data);
+      player_1_exist = existing_data['player_1'];
+      add_players(player_1_exist,playerId);
+      display_opponent(player_1_exist,player_1_exist,playerId);
+    });  
+    
+
+        
   }
     
-  else {
+    console.log(playerId);
+    document.getElementById("user_id").innerHTML = playerId;
+    const positionsRef = ref(database, 'games/' + gameId + '/positions');
+    onValue(positionsRef, (snapshot) => {
+      var data = snapshot.val();
+      var positions = data['positions'];
+      change_values(positions,playerId,opponentId);
+    });
     
-    turn_counter = turn_counter + 1;
-    
-    if (turn_counter == 9) {
-      display_win = document.getElementById("game_winner");
-      display_win.innerHTML = "Tie";
-      play_again_button = document.getElementById("play_again");
-      play_again_button.setAttribute("style","display: visible;");
-      
+    // ...
+  } else {
+    console.log("User is signed out");
+    // User is signed out
+    // ...
+  }
+});
+
+
+setPersistence(auth, browserSessionPersistence)
+  .then(() => {
+    // Existing and future Auth states are now persisted in the current
+    // session only. Closing the window would clear any existing state even
+    // if a user forgets to sign out.
+    // ...
+    // New sign-in will be persisted with session persistence.
+    return signInAnonymously(auth);
+  })
+  .catch((error) => {
+    // Handle Errors here.
+    const errorCode = error.code;
+    const errorMessage = error.message;
+  });
+
+  function change_turn(a,b) {
+    if (player_Turn.slice(16,43) == a) {
+      c = a;
+    }
+    else {
+      c = b;
     }
     
+    set(ref(database, '/games/' + gameId), {
+    player_1: a,
+    player_2: b,
+    turn: c,
+    });
+  }
+  function move_multi(a) {
+    positions_filled[a] = playerId;
+    console.log(positions_filled);
     
-  }
+    get(child(dbRef, '/games/' + gameId + "/positions")).then((snapshot) => {
+      var existing_data = snapshot.val();
+      console.log(existing_data);
+      positions_filled = existing_data['positions'];
+    });
+      
+    set(ref(database, '/games/' + gameId + "/positions"), {
+    positions: positions_filled, 
+    });
 
-  
-  
-  
-  
-}
-function move(a) {
-  var message_to_user = document.getElementById("user_turn");
-  var user_turn = message_to_user.innerHTML;
-  console.log("");
-  var turn = user_turn.slice(0,1);
-  if (a > 0 && a < 4) {
-    row_1[a-1] = turn;
+    change_turn(player_1_exist, player_2);
   }
-  if (a > 3 && a < 7)  {
-    row_2[a-4] = turn;
-  }
-  if (a > 6 && a < 10)  {
-    row_3[a-7] = turn;
-  }
-  if (turn == "X") {
-    user_turn = "O's turn";
-    message_to_user.innerHTML =  user_turn; 
-  }
-  else {
-    user_turn = "X's turn";
-    message_to_user.innerHTML =  user_turn; 
-  }
-  button_id = "button_" + a.toString();
-  position_selected = document.getElementById(button_id);
-  position_selected.innerHTML = turn;
-  console.log(row_1);
-  console.log(row_2);
-  console.log(row_3);
-  checkWin();
-  
-  
-  
-    
-  
-}
- 
-
-
-  
-  
+      window.move_multi = move_multi;

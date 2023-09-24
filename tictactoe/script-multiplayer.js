@@ -1,11 +1,12 @@
     var playerId = "";
     var player_1 = "";
     var player_2 = "";
+    var opponentId = "";
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
     import { getAuth, onAuthStateChanged, signInAnonymously, setPersistence, browserSessionPersistence } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
     import { getDatabase, set, ref, onValue, get,child } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-database.js";
   
-      function change_values(a,c,d) {
+      function change_values(a,c,d) { // a is the list of positions, c is the user's computer, d is the opponent's computer
         player_Turn = document.getElementById("user_turn").innerHTML;
         x_or_o = Array.from(player_Turn)[0];
         
@@ -68,12 +69,15 @@
 
   // Initialize Firebase
   var player_1_exist = "";
+var p = 0; // counter to determine if the opponent has already been displayed
   
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
   const database = getDatabase();
   const dbRef = ref(getDatabase());
   function display_opponent(a,b,c) { // a is opponent ID, b is player_1 (user turn purposes), c is the user's computer
+    if (p == 0) {
+    p += 1;
     document.getElementById("opponent_id").innerHTML = a;
     document.getElementById("user_turn").innerHTML += " (" + b + ")";
     if (b == c) { // if the user is player_1
@@ -84,6 +88,11 @@
         document.getElementById(button_id).setAttribute("onclick",button_function); 
       }
     }
+    }
+    else {
+        console.log("opponent already registered");
+    }
+    
   }
   function add_players(a,b) {
     console.log(a);
@@ -115,13 +124,14 @@
     const gamesRef = ref(database, 'games/' + gameId);
     onValue(gamesRef, (snapshot) => {
       var data = snapshot.val();
-      var opponentId = data['player_2'];
+      opponentId = data['player_2'];
       display_opponent(opponentId,playerId,playerId);
       });
 
-    const turnRef = ref(database, 'games/' + gameId + '/turn');
+    const turnRef = ref(database, 'games/' + gameId);
     onValue(turnRef, (snapshot) => {
-  
+        data = snapshot.val();
+        
   });
     }
     else {

@@ -14,8 +14,8 @@
         
         
         for (let n = 0; n != 9; n++) {
-          b = n.toString();
-          button_id = "button_" + b;
+          var b = n.toString();
+          var button_id = "button_" + b;
           if (n in a) {
             document.getElementById(button_id).innerHTML = x_or_o;
             document.getElementById(button_id).setAttribute("onclick","");

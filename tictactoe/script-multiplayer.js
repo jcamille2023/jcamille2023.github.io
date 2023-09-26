@@ -9,6 +9,7 @@
     import { getDatabase, set, ref, onValue, get,child } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-database.js";
   
       function change_values(a,c,d) { // a is the list of positions, c is the user's computer, d is the opponent's computer
+        console.log(document.getElementById("user_turn").innerHTML);
         player_Turn = document.getElementById("user_turn").innerHTML;
         x_or_o = Array.from(player_Turn)[0];
         

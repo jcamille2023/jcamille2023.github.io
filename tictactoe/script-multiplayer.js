@@ -6,8 +6,10 @@
     var x_or_o = "";
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
     import { getAuth, onAuthStateChanged, signInAnonymously, setPersistence, browserSessionPersistence } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
-    import { getDatabase, set, ref, onValue, get,child } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-database.js";
-  
+    import { getDatabase, set, ref, onValue, get,child,remove } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-database.js";
+
+
+      
       function change_values(a,c,d) { // a is the list of positions, c is the user's computer, d is the opponent's computer
         console.log(document.getElementById("user_turn").innerHTML);
         player_turn = document.getElementById("user_turn").innerHTML;
@@ -221,4 +223,10 @@ setPersistence(auth, browserSessionPersistence)
     change_turn(player_1_exist, player_2);
     
   }
+
+    function delete_session() {
+        gameRef = ref(database, 'games/' + gameId);
+        remove(gameRef);
+        
+      }
       window.move_multi = move_multi;

@@ -130,7 +130,7 @@ var p = 0; // counter to determine if the opponent has already been displayed
 
     const turnRef = ref(database, 'games/' + gameId);
     onValue(turnRef, (snapshot) => {
-        data = snapshot.val();
+        var data = snapshot.val();
         
   });
     }

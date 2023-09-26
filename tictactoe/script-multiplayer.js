@@ -22,7 +22,9 @@
             
           }
         }
-
+        console.log(player_Turn.slice(16,43);
+        console.log(c);
+        console.log(x_or_o);
         if (x_or_o == "X") {
           if (player_Turn.slice(16,43) == c) {
             document.getElementById("user_turn").innerHTML = "O's turn (" + d + ")";

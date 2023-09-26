@@ -186,10 +186,10 @@ setPersistence(auth, browserSessionPersistence)
   function change_turn(a,b) {
     console.log(player_Turn.slice(16,43));
     if (player_Turn.slice(16,43) == a) {
-      c = b;
+      var c = b;
     }
     else {
-      c = a;
+      var c = a;
     }
 
     

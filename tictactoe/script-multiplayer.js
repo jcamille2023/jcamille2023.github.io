@@ -76,7 +76,7 @@ var p = 0; // counter to determine if the opponent has already been displayed
   const database = getDatabase();
   const dbRef = ref(getDatabase());
   function display_opponent(a,b,c) { // a is opponent ID, b is player_1 (user turn purposes), c is the user's computer
-    if (p == 0) {
+    if (p < 2) {
     p += 1;
     document.getElementById("opponent_id").innerHTML = a;
     document.getElementById("user_turn").innerHTML += " (" + b + ")";

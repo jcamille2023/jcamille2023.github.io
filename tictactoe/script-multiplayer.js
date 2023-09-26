@@ -15,14 +15,22 @@
         player_turn = document.getElementById("user_turn").innerHTML;
         var player_turn_2 = document.getElementById("user_turn").innerHTML;
         x_or_o = Array.from(player_turn)[0];
-        
+
         
         for (let n = 0; n != 9; n++) {
           var b = n.toString();
           var button_id = "button_" + b;
+          console.log(player_1); 
           if (n in a) {
-            document.getElementById(button_id).innerHTML = x_or_o;
-            document.getElementById(button_id).setAttribute("onclick","");
+            if (a[n] == player_1) {
+                document.getElementById(button_id).innerHTML = "X";
+                document.getElementById(button_id).setAttribute("onclick","");
+            }
+            else {
+                document.getElementById(button_id).innerHTML = "O";
+                document.getElementById(button_id).setAttribute("onclick","");  
+            }
+              
             
           }
         }
@@ -32,9 +40,27 @@
         if (x_or_o == "X") {
           if (player_turn_2.slice(14,42) == c) {
             document.getElementById("user_turn").innerHTML = "O's turn (" + d + ")";
+            for (let n = 0; n != 9; n++) {
+              var b = n.toString();
+              var button_id = "button_" + b; 
+                document.getElementById(button_id).setAttribute("onclick","");
           }
+        }
+            
           else {
             document.getElementById("user_turn").innerHTML = "O's turn (" + c + ")";
+            for (let n = 0; n != 9; n++) {
+              var b = n.toString();
+              var button_id = "button_" + b;
+              if (document.getElementById(button_id).innerHTML == x_or_o) {
+              document.getElementById(button_id).setAttribute("onclick","");
+              }
+              else {
+                var t = n + 1
+                var button_function = "move_multi(" + t + ")"
+                document.getElementById(button_id).setAttribute("onclick",button_function);
+              }
+          }
           }
           
         }
@@ -44,6 +70,18 @@
           }
           else {
             document.getElementById("user_turn").innerHTML = "X's turn (" + c + ")";
+            for (let n = 0; n != 9; n++) {
+              var b = n.toString();
+              var button_id = "button_" + b;
+              if (document.getElementById(button_id).innerHTML == x_or_o) {
+              document.getElementById(button_id).setAttribute("onclick","");
+              }
+              else {
+                var t = n + 1
+                var button_function = "move_multi(" + t + ")"
+                document.getElementById(button_id).setAttribute("onclick",button_function);
+              }
+          }
         }
       }
       }

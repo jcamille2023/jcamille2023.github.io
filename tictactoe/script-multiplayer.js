@@ -229,4 +229,5 @@ setPersistence(auth, browserSessionPersistence)
         remove(gameRef);
         
       }
+      window.delete_session = delete_session;  
       window.move_multi = move_multi;

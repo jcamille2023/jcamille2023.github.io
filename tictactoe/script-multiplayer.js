@@ -22,7 +22,7 @@
             
           }
         }
-        console.log(player_Turn.slice(16,43);
+        console.log(player_Turn.slice(16,43));
         console.log(c);
         console.log(x_or_o);
         if (x_or_o == "X") {

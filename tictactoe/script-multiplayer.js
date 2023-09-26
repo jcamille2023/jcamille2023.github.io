@@ -182,12 +182,15 @@ setPersistence(auth, browserSessionPersistence)
   });
 
   function change_turn(a,b) {
+    console.log(player_Turn.slice(16,43));
     if (player_Turn.slice(16,43) == a) {
-      c = a;
-    }
-    else {
       c = b;
     }
+    else {
+      c = a;
+    }
+
+    
     
     set(ref(database, '/games/' + gameId), {
     player_1: a,
@@ -210,5 +213,6 @@ setPersistence(auth, browserSessionPersistence)
     });
 
     change_turn(player_1_exist, player_2);
+    change_values(positions_filled,playerId,opponentId);
   }
       window.move_multi = move_multi;

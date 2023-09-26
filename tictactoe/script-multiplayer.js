@@ -26,11 +26,11 @@
             
           }
         }
-        console.log(player_turn_2.slice(16,43));
+        console.log(player_turn_2.slice(14,42));
         console.log(c);
         console.log(x_or_o);
         if (x_or_o == "X") {
-          if (player_turn_2.slice(16,43) == c) {
+          if (player_turn_2.slice(14,42) == c) {
             document.getElementById("user_turn").innerHTML = "O's turn (" + d + ")";
           }
           else {
@@ -39,7 +39,7 @@
           
         }
         else {
-          if (player_turn_2.slice(16,43) == c) {
+          if (player_turn_2.slice(14,42) == c) {
             document.getElementById("user_turn").innerHTML = "X's turn (" + d + ")";
           }
           else {
@@ -190,8 +190,8 @@ setPersistence(auth, browserSessionPersistence)
   });
 
   function change_turn(a,b) {
-    console.log(player_turn.slice(16,43));
-    if (player_turn.slice(16,43) == a) {
+    console.log(player_turn.slice(14,42));
+    if (player_turn.slice(14,42) == a) {
       var c = b;
     }
     else {
@@ -225,7 +225,7 @@ setPersistence(auth, browserSessionPersistence)
   }
 
     function delete_session() {
-        gameRef = ref(database, 'games/' + gameId);
+        var gameRef = ref(database, 'games/' + gameId);
         remove(gameRef);
         
       }

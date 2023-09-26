@@ -215,6 +215,6 @@ setPersistence(auth, browserSessionPersistence)
     });
 
     change_turn(player_1_exist, player_2);
-    change_values(positions_filled,playerId,opponentId);
+    
   }
       window.move_multi = move_multi;

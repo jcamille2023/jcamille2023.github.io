@@ -2,7 +2,7 @@
     var player_1 = "";
     var player_2 = "";
     var opponentId = "";
-    var player_Turn = "";
+    var player_turn = "";
     var x_or_o = "";
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
     import { getAuth, onAuthStateChanged, signInAnonymously, setPersistence, browserSessionPersistence } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
@@ -10,8 +10,9 @@
   
       function change_values(a,c,d) { // a is the list of positions, c is the user's computer, d is the opponent's computer
         console.log(document.getElementById("user_turn").innerHTML);
-        player_Turn = document.getElementById("user_turn").innerHTML;
-        x_or_o = Array.from(player_Turn)[0];
+        player_turn = document.getElementById("user_turn").innerHTML;
+        var player_turn_2 = document.getElementById("user_turn").innerHTML;
+        x_or_o = Array.from(player_turn)[0];
         
         
         for (let n = 0; n != 9; n++) {
@@ -23,11 +24,11 @@
             
           }
         }
-        console.log(player_Turn.slice(16,43));
+        console.log(player_turn_2.slice(16,43));
         console.log(c);
         console.log(x_or_o);
         if (x_or_o == "X") {
-          if (player_Turn.slice(16,43) == c) {
+          if (player_turn_2.slice(16,43) == c) {
             document.getElementById("user_turn").innerHTML = "O's turn (" + d + ")";
           }
           else {
@@ -36,7 +37,7 @@
           
         }
         else {
-          if (player_Turn.slice(16,43) == c) {
+          if (player_turn_2.slice(16,43) == c) {
             document.getElementById("user_turn").innerHTML = "X's turn (" + d + ")";
           }
           else {
@@ -187,8 +188,8 @@ setPersistence(auth, browserSessionPersistence)
   });
 
   function change_turn(a,b) {
-    console.log(player_Turn.slice(16,43));
-    if (player_Turn.slice(16,43) == a) {
+    console.log(player_turn.slice(16,43));
+    if (player_turn.slice(16,43) == a) {
       var c = b;
     }
     else {

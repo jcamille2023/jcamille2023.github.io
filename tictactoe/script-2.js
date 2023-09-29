@@ -2,7 +2,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebas
 import { getAuth, onAuthStateChanged, signInAnonymously, setPersistence, browserSessionPersistence } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
 import { getDatabase, set, ref, onValue, get,child,remove } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-database.js";
 
-const playerId = "";
+var playerId = "";
 var player_1 = "";
 var player_2 = "";
 var turn = "";
@@ -38,7 +38,7 @@ if (user) {
 else {
 	console.log("User is signed out");
 }
-}
+});
 
 function activate_buttons() {
 	for (let n = 1; n != 10; n++) { 
@@ -66,7 +66,7 @@ if (gameId == "new") {
 	document.getElementById("user_turn").innerHTML += "(" + playerId + ")";
 	const gamesRef = ref(database, 'games/' + gameId);
 	onValue(gamesRef, (snapshot) => {
-		var data = snapshot.val()
+		var data = snapshot.val();
 		player_2 = data['player_2'];
 		opponentId = player_2;
 

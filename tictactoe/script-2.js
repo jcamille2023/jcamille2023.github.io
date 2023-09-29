@@ -70,7 +70,7 @@ if (gameId == "new") {
 		player_2 = data['player_2'];
 		opponentId = player_2;
 
-		if (n == 0) {
+		if (n != 1) {
 			document.getElementById("opponent_id").innerHTML += opponentId;
 			activate_buttons();
 		}

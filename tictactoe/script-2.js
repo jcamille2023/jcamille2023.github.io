@@ -7,6 +7,7 @@ var player_1 = "";
 var player_2 = "";
 var turn = "";
 var opponentId = "";
+var n = 0;
 
 function random_number_gen() {
 	return Math.floor(Math.random() * 9999);
@@ -32,9 +33,19 @@ if (user) {
     playerId = user.uid;
     console.log(playerId);
     console.log("User is signed in");
+    document.getElementById("user_id").innerHTML += playerId;
 }
 else {
 	console.log("User is signed out");
+}
+
+function activate_buttons() {
+	for (let n = 1; n != 10; n++) { 
+        	let b = n.toString();
+        	var button_id = "button_" + b;     
+        	var button_function = "move_multi(" + b + ")"; 
+        	document.getElementById(button_id).setAttribute("onclick",button_function); 
+	}
 }
  
 const searchParams = new URLSearchParams(window.location.search);
@@ -42,14 +53,31 @@ var gameId = searchParams.get('game_id');
 if (gameId == "new") {
 	game_state = "new";
 	gameId = random_number_gen();
-    document.getElementById("game_id").innerHTML = gameId;
+    	document.getElementById("game_id").innerHTML = gameId;
 	set(ref(database, "/games/" + gameId), {
 		player_1: playerId,
-		turn: playerId,
+	});
+	set(ref(database,"/games/" + gameId + "/turn"), {
+		turn: playerId
 	});
 	player_1 = playerId;
 	turn = playerId;
 	document.getElementById("user_turn").innerHTML += "(" + playerId + ")";
+	const gamesRef = ref(database, 'games/' + gameId);
+	onValue(gamesRef, (snapshot) => {
+		var data = snapshot.val()
+		player_2 = data['player_2'];
+		opponentId = player_2;
+
+		if (n == 0) {
+			document.getElementById("opponent_id").innerHTML += opponentId;
+			activate_buttons();
+		}
+		else {console.log("opponent exists");}
+		n += 1;
+		
+	});
+	
 	
 	
     }
@@ -62,19 +90,26 @@ else {
 		console.log("Player 1:");
 		console.log(data['player_1']);
 		console.log("User turn:");
-		console.log(data['turn']);
+		console.log(data.turn.turn);
 		
 		
 		data['player_2'] = playerId;
 		set(ref(database, "/games/" + gameId), data);
 		player_1 = data['player_1'];
-		turn = data['turn']
+		turn = data.turn.turn;
 		opponentId = player_1;
 		document.getElementById("user_turn").innerHTML += "(" + opponentId + ")";
-
-		
-		
-		
-		
+		document.getElementById("opponent_id").innerHTML += opponentId;
 	});
     }
+
+function deactivate_buttons() {
+	for (let n = 1; n != 10; n++) { 
+        	let b = n.toString();
+        	var button_id = "button_" + b;      
+        	document.getElementById(button_id).setAttribute("onclick",""); 
+	}
+}
+
+	
+

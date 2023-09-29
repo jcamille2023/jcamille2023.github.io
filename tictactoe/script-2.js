@@ -52,7 +52,7 @@ function activate_buttons() {
 const searchParams = new URLSearchParams(window.location.search);
 var gameId = searchParams.get('game_id');
 if (gameId == "new") {
-	game_state = "new";
+	var game_state = "new";
 	gameId = random_number_gen();
     	document.getElementById("game_id").innerHTML = gameId;
 	set(ref(database, "/games/" + gameId), {

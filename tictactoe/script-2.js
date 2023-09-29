@@ -38,6 +38,7 @@ if (user) {
 else {
 	console.log("User is signed out");
 }
+}
 
 function activate_buttons() {
 	for (let n = 1; n != 10; n++) { 

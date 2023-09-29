@@ -70,11 +70,11 @@ if (gameId == "new") {
 		player_2 = data['player_2'];
 		opponentId = player_2;
 
-		if (n != 1) {
+		if (n =! 2) {
 			document.getElementById("opponent_id").innerHTML += opponentId;
 			activate_buttons();
 		}
-		else {console.log("opponent exists");}
+		else {console.log("opponent exists or too early");}
 		n += 1;
 		
 	});

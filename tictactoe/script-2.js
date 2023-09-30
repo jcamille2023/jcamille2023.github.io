@@ -97,6 +97,7 @@ else {
 		
 		
 		data['player_2'] = playerId;
+		console.log(data);
 		set(ref(database, "/games/" + gameId), data);
 		player_1 = data['player_1'];
 		turn = data.turn.turn;

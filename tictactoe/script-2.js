@@ -88,7 +88,7 @@ else {
     document.getElementById("game_id").innerHTML = gameId;
 	get(child(dbRef,'/games/' + gameId)).then((snapshot) => {
 		const data = snapshot.val();
-		
+		console.log(data);
 		// debugging purposes
 		console.log("Player 1:");
 		console.log(data['player_1']);

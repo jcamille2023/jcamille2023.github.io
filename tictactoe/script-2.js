@@ -40,7 +40,7 @@ else {
 }
 });
 
-function activate_buttons() {
+function activate_buttons() { // activates buttons upon player_2 joining
 	for (let n = 1; n != 10; n++) { 
         	let b = n.toString();
         	var button_id = "button_" + b;     
@@ -48,6 +48,9 @@ function activate_buttons() {
         	document.getElementById(button_id).setAttribute("onclick",button_function); 
 	}
 }
+
+function add_player_2(a) { // adds player_2 to database upon the joining of player_2
+	set(ref(database, "/games/" + gameId), a);
  
 const searchParams = new URLSearchParams(window.location.search);
 var gameId = searchParams.get('game_id');
@@ -95,10 +98,11 @@ else {
 		console.log("User turn:");
 		console.log(data.turn.turn);
 		
-		
+		// adding player_2
 		data['player_2'] = playerId;
 		console.log(data);
-		set(ref(database, "/games/" + gameId), data);
+		add_player_2(data);
+		
 		player_1 = data['player_1'];
 		turn = data.turn.turn;
 		opponentId = player_1;

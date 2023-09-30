@@ -9,7 +9,7 @@ var turn = "";
 var opponentId = "";
 var n = 0;
 
-function random_number_gen() {
+function random_number_gen() { // generates gameId
 	return Math.floor(Math.random() * 9999);
 }
 
@@ -51,6 +51,7 @@ function activate_buttons() { // activates buttons upon player_2 joining
 
 function add_player_2(a) { // adds player_2 to database upon the joining of player_2
 	set(ref(database, "/games/" + gameId), a);
+}
  
 const searchParams = new URLSearchParams(window.location.search);
 var gameId = searchParams.get('game_id');

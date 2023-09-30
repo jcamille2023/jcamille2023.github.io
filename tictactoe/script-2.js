@@ -66,6 +66,7 @@ if (gameId == "new") {
 	document.getElementById("user_turn").innerHTML += "(" + playerId + ")";
 	const gamesRef = ref(database, 'games/' + gameId);
 	onValue(gamesRef, (snapshot) => {
+		console.log(n);
 		var data = snapshot.val();
 		player_2 = data['player_2'];
 		opponentId = player_2;

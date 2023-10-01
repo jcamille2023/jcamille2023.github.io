@@ -100,9 +100,9 @@ else {
 		console.log(data.turn.turn);
 		
 		// adding player_2
-		data['player_2'] = playerId;
+		//data['player_2'] = playerId;
 		console.log(data);
-		add_player_2(data);
+		//add_player_2(data);
 		
 		player_1 = data['player_1'];
 		turn = data.turn.turn;

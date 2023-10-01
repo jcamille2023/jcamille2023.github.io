@@ -9,12 +9,27 @@ var turn = "";
 var opponentId = "";
 var n = 0;
 
+
+const firebaseConfig = {
+    apiKey: "AIzaSyDkf2Xme8vIYwSjNgpikMPlHETkteqEsfI",
+    authDomain: "tic-tac-toe-online-108ca.firebaseapp.com",
+    databaseURL: "https://tic-tac-toe-online-108ca-default-rtdb.firebaseio.com",
+    projectId: "tic-tac-toe-online-108ca",
+    storageBucket: "tic-tac-toe-online-108ca.appspot.com",
+    messagingSenderId: "971654471519",
+    appId: "1:971654471519:web:3e05a829c5db81a4f920ea"
+  };
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const database = getDatabase();
+const dbRef = ref(getDatabase());
+
 function random_number_gen() { // generates gameId
 	return Math.floor(Math.random() * 9999);
 }
 
-function add_player_2(a) { // adds player_2 to database upon the joining of player_2
-	set(ref(database, "/games/" + gameId), a);
+function add_player_2(a,b) { // adds player_2 to database upon the joining of player_2
+	set(ref(database, "/games/" + b), a);
 }
 
 function deactivate_buttons() {
@@ -35,19 +50,6 @@ function activate_buttons() { // activates buttons upon player_2 joining
 }
 
 
-const firebaseConfig = {
-    apiKey: "AIzaSyDkf2Xme8vIYwSjNgpikMPlHETkteqEsfI",
-    authDomain: "tic-tac-toe-online-108ca.firebaseapp.com",
-    databaseURL: "https://tic-tac-toe-online-108ca-default-rtdb.firebaseio.com",
-    projectId: "tic-tac-toe-online-108ca",
-    storageBucket: "tic-tac-toe-online-108ca.appspot.com",
-    messagingSenderId: "971654471519",
-    appId: "1:971654471519:web:3e05a829c5db81a4f920ea"
-  };
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const database = getDatabase();
-const dbRef = ref(getDatabase());
 onAuthStateChanged(auth, (user) => {
 if (user) {
     // User is signed in, see docs for a list of available properties
@@ -103,7 +105,7 @@ else {
 		// adding player_2
 		data['player_2'] = playerId;
 		console.log(data);
-		add_player_2(data);
+		add_player_2(data,gameId);
 		
 		player_1 = data['player_1'];
 		turn = data.turn.turn;

@@ -56,6 +56,7 @@ function add_player_2(a) { // adds player_2 to database upon the joining of play
 const searchParams = new URLSearchParams(window.location.search);
 var gameId = searchParams.get('game_id');
 if (gameId == "new") {
+	console.log(playerId);
 	var game_state = "new";
 	gameId = random_number_gen();
     	document.getElementById("game_id").innerHTML = gameId;
@@ -100,9 +101,9 @@ else {
 		console.log(data.turn.turn);
 		
 		// adding player_2
-		//data['player_2'] = playerId;
+		data['player_2'] = playerId;
 		console.log(data);
-		//add_player_2(data);
+		add_player_2(data);
 		
 		player_1 = data['player_1'];
 		turn = data.turn.turn;

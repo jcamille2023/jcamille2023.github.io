@@ -13,6 +13,28 @@ function random_number_gen() { // generates gameId
 	return Math.floor(Math.random() * 9999);
 }
 
+function add_player_2(a) { // adds player_2 to database upon the joining of player_2
+	set(ref(database, "/games/" + gameId), a);
+}
+
+function deactivate_buttons() {
+	for (let n = 1; n != 10; n++) { 
+        	let b = n.toString();
+        	var button_id = "button_" + b;      
+        	document.getElementById(button_id).setAttribute("onclick",""); 
+	}
+}
+
+function activate_buttons() { // activates buttons upon player_2 joining
+	for (let n = 1; n != 10; n++) { 
+        	let b = n.toString();
+        	var button_id = "button_" + b;     
+        	var button_function = "move_multi(" + b + ")"; 
+        	document.getElementById(button_id).setAttribute("onclick",button_function); 
+	}
+}
+
+
 const firebaseConfig = {
     apiKey: "AIzaSyDkf2Xme8vIYwSjNgpikMPlHETkteqEsfI",
     authDomain: "tic-tac-toe-online-108ca.firebaseapp.com",
@@ -34,26 +56,7 @@ if (user) {
     console.log(playerId);
     console.log("User is signed in");
     document.getElementById("user_id").innerHTML += playerId;
-}
-else {
-	console.log("User is signed out");
-}
-});
-
-function activate_buttons() { // activates buttons upon player_2 joining
-	for (let n = 1; n != 10; n++) { 
-        	let b = n.toString();
-        	var button_id = "button_" + b;     
-        	var button_function = "move_multi(" + b + ")"; 
-        	document.getElementById(button_id).setAttribute("onclick",button_function); 
-	}
-}
-
-function add_player_2(a) { // adds player_2 to database upon the joining of player_2
-	set(ref(database, "/games/" + gameId), a);
-}
- 
-const searchParams = new URLSearchParams(window.location.search);
+    const searchParams = new URLSearchParams(window.location.search);
 var gameId = searchParams.get('game_id');
 if (gameId == "new") {
 	console.log(playerId);
@@ -85,9 +88,6 @@ if (gameId == "new") {
 		
 		
 	});
-	
-	
-	
     }
 else {
     document.getElementById("game_id").innerHTML = gameId;
@@ -113,13 +113,18 @@ else {
 	});
     }
 
-function deactivate_buttons() {
-	for (let n = 1; n != 10; n++) { 
-        	let b = n.toString();
-        	var button_id = "button_" + b;      
-        	document.getElementById(button_id).setAttribute("onclick",""); 
-	}
 }
+else {
+	console.log("User is signed out");
+}
+});
+
+
+
+
+ 
+
+
 
 	
 

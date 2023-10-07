@@ -8,6 +8,7 @@ var player_2 = "";
 var turn = "";
 var opponentId = "";
 var n = 0;
+var positions = {};
 
 
 const firebaseConfig = {
@@ -120,6 +121,31 @@ else {
 	console.log("User is signed out");
 }
 });
+
+function move_multi(button_number) {
+	if (playerId == player_1) {
+		 // button_id = "button" + button_number;
+		// document.getElementById(button_id).innerHTML = "X"; when change is detected database will change the button, not the computer
+		get(child(dbRef, '/games/' + gameId)).then((snapshot) => {
+			data = snapshot.val();
+			var game_data = data;
+			game_data.turn = player_2;
+			
+		});
+		set(ref(database,"/games/" + gameId), game_data);
+		get(child(dbRef, '/games/' + gameId + "/positions")).then((snapshot) => {
+			data = snapshot.val();
+			positions = data[positions];
+			positions.button_number = playerId;
+			
+		});
+		set(ref(database,"/games/" + gameId + "/positions"), {
+			positions: positions,	
+		};
+		
+		
+	}
+}
 
 
 

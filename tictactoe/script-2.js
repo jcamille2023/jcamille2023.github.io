@@ -83,6 +83,7 @@ if (gameId == "new") {
 		console.log(n);
 		var data = snapshot.val();
 		player_2 = data['player_2'];
+		console.log(player_2);
 		opponentId = player_2;
 
 		if (n == 2) {
@@ -136,7 +137,7 @@ function move_multi(button_number) {
 		});
 		set(ref(database,"/games/" + gameId), game_data);
 		get(child(dbRef, '/games/' + gameId + "/positions")).then((snapshot) => {
-			data = snapshot.val();
+			var data = snapshot.val();
 			positions = data[positions];
 			positions.button_number = playerId;
 			

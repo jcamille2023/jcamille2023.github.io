@@ -10,6 +10,7 @@ var opponentId = "";
 var n = 0;
 var positions = {};
 var gameId = 0;
+var game_data = {};
 
 
 const firebaseConfig = {
@@ -128,8 +129,8 @@ function move_multi(button_number) {
 		 // button_id = "button" + button_number;
 		// document.getElementById(button_id).innerHTML = "X"; when change is detected database will change the button, not the computer
 		get(child(dbRef, '/games/' + gameId)).then((snapshot) => {
-			data = snapshot.val();
-			var game_data = data;
+			var data = snapshot.val();
+			game_data = data;
 			game_data.turn = player_2;
 			
 		});

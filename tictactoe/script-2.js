@@ -9,6 +9,7 @@ var turn = "";
 var opponentId = "";
 var n = 0;
 var positions = {};
+var gameId = 0;
 
 
 const firebaseConfig = {
@@ -60,7 +61,7 @@ if (user) {
     console.log("User is signed in");
     document.getElementById("user_id").innerHTML += playerId;
     const searchParams = new URLSearchParams(window.location.search);
-var gameId = searchParams.get('game_id');
+    gameId = searchParams.get('game_id');
 if (gameId == "new") {
 	console.log(playerId);
 	var game_state = "new";

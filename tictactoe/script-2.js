@@ -141,7 +141,7 @@ function move_multi(button_number) {
 		});
 		set(ref(database,"/games/" + gameId + "/positions"), {
 			positions: positions,	
-		};
+		});
 		
 		
 	}

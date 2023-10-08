@@ -126,6 +126,7 @@ else {
 });
 
 function move_multi(button_number) {
+	console.log(player_2);
 	if (playerId == player_1) {
 		 // button_id = "button" + button_number;
 		// document.getElementById(button_id).innerHTML = "X"; when change is detected database will change the button, not the computer

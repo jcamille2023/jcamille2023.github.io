@@ -174,6 +174,7 @@ function move_multi(button_number) {
 			
 			
 		});
+	}
 }
 window.move_multi = move_multi;
 

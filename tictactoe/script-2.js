@@ -127,8 +127,14 @@ else {
 function move_multi_2(user_id) {
 	get(child(dbRef, '/games/' + gameId + "/positions")).then((snapshot) => {
 			var data = snapshot.val();
-			positions = data[positions];
-			positions.button_number = user_id;
+			if (data[positions]) {
+				positions = data[positions];
+				positions.button_number = user_id;
+			}
+			else {
+				positions = {};
+				positions.button_number = user_id;
+			}
 			
 		});
 		set(ref(database,"/games/" + gameId + "/positions"), {
@@ -151,10 +157,23 @@ function move_multi(button_number) {
 			move_multi_2(player_1) // code sections farther down have been running out of order, therefore, calling them in a separate function will prevent this.
 			
 			
-		});
-		
-		
+		});	
 	}
+	else {
+		 // button_id = "button" + button_number;
+		// document.getElementById(button_id).innerHTML = "X"; when change is detected database will change the button, not the computer
+		get(child(dbRef, '/games/' + gameId)).then((snapshot) => {
+			var data = snapshot.val();
+			game_data = data;
+			console.log(game_data);
+			console.log(player_1);
+			game_data.turn = player_1;
+			console.log(game_data);
+			set(ref(database,"/games/" + gameId), game_data);
+			move_multi_2(player_2) // code sections farther down have been running out of order, therefore, calling them in a separate function will prevent this.
+			
+			
+		});
 }
 window.move_multi = move_multi;
 

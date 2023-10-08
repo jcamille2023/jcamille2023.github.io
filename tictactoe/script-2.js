@@ -127,7 +127,7 @@ else {
 function move_multi_2(user_id) {
 	get(child(dbRef, '/games/' + gameId + "/positions")).then((snapshot) => {
 			var data = snapshot.val();
-			if (data[positions]) {
+			if (positions in data) {
 				positions = data[positions];
 				positions.button_number = user_id;
 			}

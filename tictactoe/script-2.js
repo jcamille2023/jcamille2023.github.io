@@ -124,7 +124,17 @@ else {
 	console.log("User is signed out");
 }
 });
-
+function move_multi_2(user_id) {
+	get(child(dbRef, '/games/' + gameId + "/positions")).then((snapshot) => {
+			var data = snapshot.val();
+			positions = data[positions];
+			positions.button_number = user_id;
+			
+		});
+		set(ref(database,"/games/" + gameId + "/positions"), {
+			positions: positions,	
+		});
+}
 function move_multi(button_number) {
 	console.log(player_2);
 	if (playerId == player_1) {
@@ -133,18 +143,14 @@ function move_multi(button_number) {
 		get(child(dbRef, '/games/' + gameId)).then((snapshot) => {
 			var data = snapshot.val();
 			game_data = data;
+			console.log(game_data);
+			console.log(player_2);
 			game_data.turn = player_2;
+			console.log(game_data);
+			set(ref(database,"/games/" + gameId), game_data);
+			move_multi_2(player_1) // code sections farther down have been running out of order, therefore, calling them in a separate function will prevent this.
 			
-		});
-		set(ref(database,"/games/" + gameId), game_data);
-		get(child(dbRef, '/games/' + gameId + "/positions")).then((snapshot) => {
-			var data = snapshot.val();
-			positions = data[positions];
-			positions.button_number = playerId;
 			
-		});
-		set(ref(database,"/games/" + gameId + "/positions"), {
-			positions: positions,	
 		});
 		
 		

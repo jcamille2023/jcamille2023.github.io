@@ -124,7 +124,7 @@ else {
 	console.log("User is signed out");
 }
 });
-function move_multi_2(user_id) {
+function move_multi_2(user_id,button_number) {
 	get(child(dbRef, '/games/' + gameId + "/positions")).then((snapshot) => {
 			var data = snapshot.val();
 			console.log(data);
@@ -155,7 +155,7 @@ function move_multi(button_number) {
 			game_data.turn = player_2;
 			console.log(game_data);
 			set(ref(database,"/games/" + gameId), game_data);
-			move_multi_2(player_1) // code sections farther down have been running out of order, therefore, calling them in a separate function will prevent this.
+			move_multi_2(player_1,button_number) // code sections farther down have been running out of order, therefore, calling them in a separate function will prevent this.
 			
 			
 		});	
@@ -171,7 +171,7 @@ function move_multi(button_number) {
 			game_data.turn = player_1;
 			console.log(game_data);
 			set(ref(database,"/games/" + gameId), game_data);
-			move_multi_2(player_2) // code sections farther down have been running out of order, therefore, calling them in a separate function will prevent this.
+			move_multi_2(player_2,button_number) // code sections farther down have been running out of order, therefore, calling them in a separate function will prevent this.
 			
 			
 		});

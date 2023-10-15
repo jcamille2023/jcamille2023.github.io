@@ -126,20 +126,19 @@ else {
 });
 function move_multi_2(user_id,button_number) {
 	get(child(dbRef, '/games/' + gameId + "/positions")).then((snapshot) => {
-			var data = snapshot.val();
-			console.log(data);
-			if (data != null) {
-				positions = data[positions];
+			positions = snapshot.val();
+			console.log(positions);
+			if (positions == {}) {
 				positions[button_number] = user_id;
+				console.log(positions);
+				set(ref(database,"/games/" + gameId + "/positions"), positions);
 			}
 			else {
-				positions = {};
+				positions = data[positions];
 				positions[button_number] = user_id;
+				set(ref(database,"/games/" + gameId + "/positions"), positions);
 			}
 			
-		});
-		set(ref(database,"/games/" + gameId + "/positions"), {
-			positions: positions,	
 		});
 }
 function move_multi(button_number) {

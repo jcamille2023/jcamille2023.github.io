@@ -130,11 +130,11 @@ function move_multi_2(user_id) {
 			console.log(data);
 			if (data != null) {
 				positions = data[positions];
-				positions.button_number = user_id;
+				positions[button_number] = user_id;
 			}
 			else {
 				positions = {};
-				positions.button_number = user_id;
+				positions[button_number] = user_id;
 			}
 			
 		});

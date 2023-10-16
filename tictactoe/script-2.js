@@ -134,6 +134,7 @@ function move_multi_2(user_id,button_number) {
 				set(ref(database,"/games/" + gameId + "/positions"), positions);
 			}
 			else {
+				positions = {};
 				positions[button_number] = user_id;
 				console.log(positions);
 				set(ref(database,"/games/" + gameId + "/positions"), positions);

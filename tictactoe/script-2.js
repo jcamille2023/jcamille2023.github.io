@@ -31,9 +31,9 @@ function random_number_gen() { // generates gameId
 	return Math.floor(Math.random() * 9999);
 }
 
-function add_player_2(a,b) { // adds player_2 to database upon the joining of player_2
+function add_player_2(a,b) { // adds player 2 to database
 	set(ref(database, "/games/" + b), a);
-}
+ }
 
 function deactivate_buttons() {
 	for (let n = 1; n != 10; n++) { 
@@ -124,10 +124,50 @@ else {
 	console.log("User is signed out");
 }
 });
-const gamesRef = ref(database, 'games/' + gameId + '/turn');
+const gamesRef = ref(database, 'games/' + gameId);
 onValue(gamesRef, (snapshot) => {
 	var data = snapshot.val();
-	console.log(data)
+	var player_turn = data['turn'];
+	console.log(player_turn);
+	if (player_turn == playerId) {
+		activate_buttons();
+		if (playerId == player_1) {
+		document.getElementById("user_turn").innerHTML = "X's turn (" + playerId + ")";
+		}
+		else if (playerId == player_2) {
+		document.getElementById("user_turn").innerHTML = "O's turn (" + playerId + ")";
+		}
+		
+	}
+	else if (player_turn == opponentId) {
+		deactivate_buttons();
+		if (opponentId == player_1) {
+		document.getElementById("user_turn").innerHTML = "X's turn (" + opponentId + ")";
+		}
+		else if (playerId == player_2) {
+		document.getElementById("user_turn").innerHTML = "O's turn (" + opponentId + ")";
+		}
+	}
+	
+});
+
+const positionsRef = ref(database, 'games/' + gameId + '/turn');
+onValue(positionsRef, (snapshot) => {
+	var data = snapshot.val();
+	positions = data[positions];
+	for (let n = 1; n == Object.keys(positions).length; n++) {
+		positions_used = Object.keys(positions)
+		let b = n.toString();
+		if (b in positions_used) {
+        		var button_id = "button_" + b;     
+        		if (playerId == player_1) {
+        			document.getElementById(button_id).innerHTML("X");
+			}
+			else {
+				document.getElementById(button_id).innerHTML("O");
+			}
+		}
+	
 });
 		
 
@@ -164,10 +204,8 @@ function move_multi(button_number) {
 			game_data.turn = player_2;
 			console.log(game_data);
 			set(ref(database,"/games/" + gameId), game_data);
-			move_multi_2(player_1,button_number) // code sections farther down have been running out of order, therefore, calling them in a separate function will prevent this.
-			
-			
-		});	
+		});
+			move_multi_2(player_1,button_number); // code sections farther down have been running out of order, therefore, calling them in a separate function will prevent this.
 	}
 	else {
 		 // button_id = "button" + button_number;
@@ -180,7 +218,7 @@ function move_multi(button_number) {
 			game_data.turn = player_1;
 			console.log(game_data);
 			set(ref(database,"/games/" + gameId), game_data);
-			move_multi_2(player_2,button_number) // code sections farther down have been running out of order, therefore, calling them in a separate function will prevent this.
+			move_multi_2(player_2,button_number); // code sections farther down have been running out of order, therefore, calling them in a separate function will prevent this.
 			
 			
 		});

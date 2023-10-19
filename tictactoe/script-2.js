@@ -124,6 +124,15 @@ else {
 	console.log("User is signed out");
 }
 });
+const gamesRef = ref(database, 'games/' + gameId + '/turn');
+onValue(gamesRef, (snapshot) => {
+	var data = snapshot.val();
+	console.log(data)
+});
+		
+
+
+
 function move_multi_2(user_id,button_number) {
 	get(child(dbRef, '/games/' + gameId + "/positions")).then((snapshot) => {
 			positions = snapshot.val();

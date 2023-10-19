@@ -155,6 +155,7 @@ const positionsRef = ref(database, 'games/' + gameId + '/turn');
 onValue(positionsRef, (snapshot) => {
 	var data = snapshot.val();
 	positions = data[positions];
+	console.log(positions);
 	for (let n = 1; n == Object.keys(positions).length; n++) {
 		positions_used = Object.keys(positions)
 		let b = n.toString();

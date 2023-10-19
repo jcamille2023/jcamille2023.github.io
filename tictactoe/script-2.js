@@ -167,6 +167,7 @@ onValue(positionsRef, (snapshot) => {
 				document.getElementById(button_id).innerHTML("O");
 			}
 		}
+	}
 	
 });
 		

@@ -18,7 +18,7 @@ section#open-section {
     text-align: center;
 }
 
-section > table#time-table {
+section#time-section {
     height: 600px;
     overflow-y: auto;
 }

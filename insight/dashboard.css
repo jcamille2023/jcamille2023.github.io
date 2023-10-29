@@ -1,0 +1,37 @@
+div#header {
+    background-image: linear-gradient(65deg, blue, purple);
+    color: white;
+}
+
+body {
+    margin: 0px;
+}
+
+
+div#wrapper {
+    margin: 14px;
+}
+
+section#open-section {
+    margin-left: 33%;
+    margin-right: 33%;
+    text-align: center;
+}
+
+table#time-table {
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid;
+}
+
+table#time-table > tbody > tr {
+    border: 1px solid grey;
+}
+
+tr#days {
+    padding: 5px;
+}
+
+tr {
+    border: 1px solid black;
+}

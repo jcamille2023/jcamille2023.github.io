@@ -33,10 +33,11 @@ onAuthStateChanged(auth, (user) => {
     const uid = user.uid;
     document.getElementById("username").innerHTML = user.displayName;
     document.getElementById("user-greeting").innerHTML = "Hi, " + user.displayName + "!";
+
+    
     
     // ...
   } else {
-    document.getElementById("sign-in-button").setAttribute("onclick","login()");
     window.location.href = "index.html";
     // ...
   }

@@ -25,8 +25,15 @@ function logout() {
 }
 window.logout = logout;
 
-
-window.add_times_to_table = add_times_to_table;
+function add_times_to_schedule() {
+  var div = document.getElementById("add-events");
+  div.setAttribute("style","visiblity: visible;");
+  div.innerHTML = "<h1>Add an event</h1>";
+  div.innerHTML += "<p>Name</p>";
+  div.innerHTML += "<input type='text' name='name'></input>
+  div.innerHTML += "<p>Times</p>";
+}
+window.add_times_to_schedule = add_times_to_schedule;
 onAuthStateChanged(auth, (user) => {
   if (user) {
     // User is signed in, see docs for a list of available properties

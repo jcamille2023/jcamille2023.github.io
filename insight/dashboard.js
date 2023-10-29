@@ -18,7 +18,7 @@ import { getDatabase, set, ref, onValue, get, child } from "https://www.gstatic.
 function logout() {
   signOut(auth).then(() => {
   console.log("User is signed out.");
-  window.location.href = "index.html";
+  window.location.href = "login.html";
   }).catch((error) => {
   // An error happened.
   });

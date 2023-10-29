@@ -13,6 +13,7 @@ import { getDatabase, set, ref, onValue, get, child } from "https://www.gstatic.
 
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
 
 function logout() {
   signOut(auth).then(() => {

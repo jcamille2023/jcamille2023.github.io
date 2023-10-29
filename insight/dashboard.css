@@ -41,8 +41,6 @@ tr {
 }
 
 .container {
-  width: 150px;
-  height: 150px;
   position: relative;
   margin: 30px;
 }
@@ -54,12 +52,10 @@ tr {
   top: 0;
   left: 0;
   opacity: 1.0;
-  background: #000000;
 }
 
 .overlay {
   top: 50%;
   z-index: 9;
   margin: 30px;
-  background: #000000;
 }

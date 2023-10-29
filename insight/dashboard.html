@@ -2,8 +2,9 @@
     <title>Dashboard - Insight</title>
     <link rel="stylesheet" type="text/css" href="dashboard.css">
     <link rel="stylesheet" type="text/css" href="stylesheet.css">
-</head><body onload="add_times_to_table()">
-    <script src="dashboard.js" type="module"></script><script>
+</head><body>
+    <script src="dashboard.js" type="module"></script>
+    <script>
 var am_or_pm;
 var b;
 
@@ -20,14 +21,14 @@ for(let z = 0; z < 6; z++) {
     am_or_pm = "pm";
   }
   else {
-    let t = n - 12
+    let t = n - 12;
     b = t.toString();
     am_or_pm = "pm";
   }
   
   const text_node = document.createTextNode(b + ":" + z.toString() + "0" + am_or_pm);
   td.appendChild(text_node);
-  tr.appendChild(td)
+  tr.appendChild(td);
   var table = document.getElementById("time-table");
   table.appendChild(tr);
   

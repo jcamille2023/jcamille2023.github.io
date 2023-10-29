@@ -24,7 +24,8 @@ function logout() {
   });
 }
 window.logout = logout;
-
+var table = document.getElementById("time-table");
+console.log(table);
 function add_times_to_table() {
 var am_or_pm;
 var b;
@@ -32,7 +33,7 @@ for(let n = 5; n < 23; n++) {
   // create the row
   let tr = document.createElement("tr");
   // create the cell
-	let td = document.createElement("td");
+  let td = document.createElement("td");
   // convert n to a string for the id purposes
   
   // set the id
@@ -59,7 +60,7 @@ for(let n = 5; n < 23; n++) {
   // Add the cell to the row
   tr.appendChild(td);
   // Add the row to the table
-  var table = document.getElementById("time-table");
+  
   table.appendChild("tr");
   
   // create the row

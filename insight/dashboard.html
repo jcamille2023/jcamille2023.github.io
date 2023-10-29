@@ -24,11 +24,14 @@
             </tbody>
         </table>
 </div>
+<div id="container" class="container">
+<div id="main" class="box">
 <section id="open-section">
         <h1 id="user-greeting">Hi, Jossaya Camille!</h1>
         <h4>Here's your Insight</h4>
     </section>
 <section id="time-section">
+    <button onclick="add_times_to_schedule()"><p>Add a time</p></button>
     <table id="time-table">
         <tbody>
     <tr>
@@ -42,7 +45,12 @@
         <td><p>Sunday</p></td>     
     </tr>
     </tbody></table>
-</section>    
+</section>
+</div> <!-- end box -->
+<div id="add-events" class="box overlay" style="visibility: hidden;">
+    
+</div> <!-- end overlay -->
+</div> <!-- end container -->
 <script defer>
 var am_or_pm;
 var b;

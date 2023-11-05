@@ -29,21 +29,21 @@ window.logout = logout;
 function add_times_to_schedule() {
   var div = document.getElementById("add-events");
   div.setAttribute("style","visiblity: visible;");
-  div.innerHTML = "<div id='add-events-2'>";
-  div.innerHTML += "<h1>Add an event</h1>";
-  div.innerHTML += "<h4>Name</h4>";
-  div.innerHTML += "<input type='text' id='name'></input>";
-  div.innerHTML += "<p>Times</p>";
-  div.innerHTML += '<table style="color: white;">';
-  div.innerHTML += '<tbody><tr><td>';
-  div.innerHTML += '<p>Start time</p>';
-  div.innerHTML += '<input type="time" id="start-time"></td>';
-  div.innerHTML += '<td><p>End time</p>';
-  div.innerHTML += '<input type="time" id="end-time">';
-  div.innerHTML += '</td></tr></tbody></table>';
-  div.innerHTML += '<button class="new_event_buttons" onclick="submit-new-events()">Submit</button>';
-  div.innerHTML += '<button onclick="cancel_new_events()" class="new-event-buttons">Cancel</button>';
-  div.innerHTML += '</div>'
+  div.innerHTML = "<div id='add-events-2'>" + 
+  "<h1>Add an event</h1>" + 
+  "<h4>Name</h4>" + 
+  "<input type='text' id='name'></input>" + 
+  "<p>Times</p>" + 
+  '<table style="color: white;">' +
+  '<tbody><tr><td>'+
+  '<p>Start time</p>'+
+  '<input type="time" id="start-time"></td>'+
+  '<td><p>End time</p>'+
+  '<input type="time" id="end-time">'+
+  '</td></tr></tbody></table>'+
+  '<button class="new_event_buttons" onclick="submit-new-events()">Submit</button>'+
+  '<button onclick="cancel_new_events()" class="new-event-buttons">Cancel</button>'+
+  '</div>';
    
 }
 window.add_times_to_schedule = add_times_to_schedule;

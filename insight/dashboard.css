@@ -67,7 +67,7 @@ div#add-events-2 {
     padding: 15px;
 }
 
-.new-event-buttons {
+.new_event_buttons {
     padding: 2px;
     margin:5px;
     background-color: transparent;
@@ -75,3 +75,9 @@ div#add-events-2 {
     border: 2px solid white;
     font-family: 'century-gothic';
 }
+
+div#add-events-2 > table {
+  color: white;
+}
+
+

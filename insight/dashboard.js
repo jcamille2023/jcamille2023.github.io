@@ -35,7 +35,7 @@ function add_times_to_schedule() {
   div.innerHTML += "<input type='text' id='name'></input>";
   div.innerHTML += "<p>Times</p>";
   div.innerHTML += '<table style="color: white;">';
-  div.innerHTML += '<table><tbody><tr><td>';
+  div.innerHTML += '<tbody><tr><td>';
   div.innerHTML += '<p>Start time</p>';
   div.innerHTML += '<input type="time" id="start-time"></td>';
   div.innerHTML += '<td><p>End time</p>';
@@ -60,7 +60,7 @@ function submit_new_events() {
  const db = getDatabase();
  set(ref(db, 'users/' + uid), event); 
 }
-window.submit_new_events = submit_new_events
+window.submit_new_events = submit_new_events;
 
 function cancel_new_events() {
  console.log("New event cancelled");
@@ -68,7 +68,7 @@ function cancel_new_events() {
  div.innerHTML = "";
  div.setAttribute("style","visiblity: hidden;");
 }
-window.cancel_new_events() = cancel_new_events()
+window.cancel_new_events = cancel_new_events;
 onAuthStateChanged(auth, (user) => {
   if (user) {
     // User is signed in, see docs for a list of available properties

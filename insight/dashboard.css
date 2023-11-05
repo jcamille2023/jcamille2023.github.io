@@ -47,7 +47,7 @@ tr {
 
 .box {
   width: 100%;
-  height: 100%;
+  height: 92%;
   position: absolute;
   top: 0;
   left: 0;
@@ -57,5 +57,21 @@ tr {
 .overlay {
   top: 50%;
   z-index: 9;
-  margin: 30px;
+  margin-left: 33%;
+  width: 33%;
+}
+
+div#add-events-2 {
+    background-image: linear-gradient(65deg,blue,purple);
+    color: white;
+    padding: 15px;
+}
+
+.new-event-buttons {
+    padding: 2px;
+    margin:5px;
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+    font-family: 'century-gothic';
 }

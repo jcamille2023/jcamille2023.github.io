@@ -86,7 +86,11 @@ function submit_new_events() {
   days_active: days_active,
  };
  const db = getDatabase();
- set(ref(db, 'users/' + uid + "/" + name), event); 
+ set(ref(db, 'users/' + uid + "/" + name), event).then(console.log("Event successfully added"));
+ var div = document.getElementById("add-events");
+ div.innerHTML = "";
+ div.setAttribute("style","visiblity: hidden;");
+ 
 }
 window.submit_new_events = submit_new_events;
 
@@ -105,6 +109,11 @@ onAuthStateChanged(auth, (user) => {
     uid = user.uid;
     document.getElementById("username").innerHTML = user.displayName;
     document.getElementById("user-greeting").innerHTML = "Hi, " + user.displayName + "!";
+    const eventRef = ref(database, 'users/' + uid);
+    onValue(eventRef, (snapshot) => {
+     var data = snapshot.val()
+     console.log(data);
+    }
 
     
     

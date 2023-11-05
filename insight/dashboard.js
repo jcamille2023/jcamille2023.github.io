@@ -41,6 +41,18 @@ function add_times_to_schedule() {
   '<td><p>End time</p>'+
   '<input type="time" id="end_time">'+
   '</td></tr></tbody></table>'+
+  '<h4>Event days</h4>'+
+  '<table><tbody><tr>'+
+  '<td><input type="checkbox" id="tuesday_active">tuesday</input></td>'+
+  '<td><input type="checkbox" id="tuesday_active">Tuesday</input></td>'+
+  '</tr><tr>'+
+  '<td><input type="checkbox" id="wednesday_active">Wednesday</input></td>'+
+  '<td><input type="checkbox" id="thursday_active">Thursday</input></td>'+
+  '</tr><tr>'+
+  '<td><input type="checkbox" id="friday_active">Friday</input></td>'+
+  '<td><input type="checkbox" id="saturday_active">Saturday</input></td>'+
+  '<td colspan="2"><input type="checkbox" id="sunday_active">Sunday</input></td>'+
+  '</tr></tbody></table>'+
   '<button class="new_event_buttons" onclick="submit_new_events()">Submit</button>'+
   '<button onclick="cancel_new_events()" class="new_event_buttons">Cancel</button>'+
   '</div>';
@@ -52,13 +64,29 @@ function submit_new_events() {
  var name = document.getElementById('name').value;
  var start_time = document.getElementById("start_time").value;
  var end_time = document.getElementById("end_time").value;
+ var monday_active = document.getElementById("monday_active").checked;
+ var tuesday_active = document.getElementById("tuesday_active").checked;
+ var wednesday_active = document.getElementById("wednesday_active").checked;
+ var thursday_active = document.getElementById("thursday_active").checked;
+ var friday_active = document.getElementById("friday_active").checked;
+ var saturday_active = document.getElementById("saturday_active").checked;
+ var sunday_active = document.getElementById("sunday_active").checked;
+ var days_active = {
+   monday: monday_active,
+   tuesday: tuesday_active,
+   wednesday: wednesday_active,
+   thursday: thursday_active,
+   friday: friday_active,
+   saturday: saturday_active,
+   sunday: sunday_active,
+ }
  var event = {
-  name: name,
   start_time: start_time,
   end_time: end_time,
+  days_active: days_active,
  };
  const db = getDatabase();
- set(ref(db, 'users/' + uid), event); 
+ set(ref(db, 'users/' + uid + "/" + name), event); 
 }
 window.submit_new_events = submit_new_events;
 

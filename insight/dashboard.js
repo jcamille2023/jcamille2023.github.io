@@ -113,6 +113,34 @@ onAuthStateChanged(auth, (user) => {
     onValue(eventRef, (snapshot) => {
      var data = snapshot.val();
      console.log(data);
+     var list_of_events = Object.keys(data);
+     for(let n = 0; n < Object.keys(data).length; n++) {
+      var event = data[list_of_events[n]];
+      var start_time_data = event.start_time;
+      var end_time_data = event.end_time;
+      console.log(event);
+      console.log(start_time_data);
+      console.log(end_time_data);
+      // calculate the start time compared to 5:00 am
+      var start_time_hour = start_time_data.slice(0,1);
+      start_time_hour = Number(start_time_hour);
+      console.log(start_time_hour);
+      var start_time_minute = start_time_data.slice(3,4);
+      start_time_minute = Number(start_time_minute) / 60;
+      console.log(start_time_minute);
+      // calculate the total length of the event
+      var end_time_hour = end_time_data.slice(0,1);
+      end_time_hour = Number(end_time_hour);
+      console.log(end_time_hour);
+      var end_time_minute = end_time_data.slice(3,4);
+      end_time_minute = Number(end_time_minute) / 60;
+      console.log(end_time_minute);
+      var start_time_hour_only = start_time_hour + start_time_minute;
+      var end_time_hour_only = end_time_hour + end_time_minute;
+      // insert cell starting at cell with respect to 5:00 am && ensure cell is appropriately wide
+      var start_time_hour_position = Number(start_time_hour) - 5;
+      
+    
     });
 
     

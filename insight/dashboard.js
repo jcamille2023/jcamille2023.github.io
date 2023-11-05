@@ -37,9 +37,9 @@ function add_times_to_schedule() {
   '<table style="color: white;">' +
   '<tbody><tr><td>'+
   '<p>Start time</p>'+
-  '<input type="time" id="start-time"></td>'+
+  '<input type="time" id="start_time"></td>'+
   '<td><p>End time</p>'+
-  '<input type="time" id="end-time">'+
+  '<input type="time" id="end_time">'+
   '</td></tr></tbody></table>'+
   '<button class="new_event_buttons" onclick="submit_new_events()">Submit</button>'+
   '<button onclick="cancel_new_events()" class="new_event_buttons">Cancel</button>'+

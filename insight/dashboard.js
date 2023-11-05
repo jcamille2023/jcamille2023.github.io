@@ -43,15 +43,15 @@ function add_times_to_schedule() {
   '</td></tr></tbody></table>'+
   '<h4>Event days</h4>'+
   '<table><tbody><tr>'+
-  '<td><input type="checkbox" id="tuesday_active">tuesday</input></td>'+
+  '<td><input type="checkbox" id="monday_active">Monday</input></td>'+
   '<td><input type="checkbox" id="tuesday_active">Tuesday</input></td>'+
   '</tr><tr>'+
   '<td><input type="checkbox" id="wednesday_active">Wednesday</input></td>'+
   '<td><input type="checkbox" id="thursday_active">Thursday</input></td>'+
   '</tr><tr>'+
   '<td><input type="checkbox" id="friday_active">Friday</input></td>'+
-  '<td><input type="checkbox" id="saturday_active">Saturday</input></td>'+
-  '<td colspan="2"><input type="checkbox" id="sunday_active">Sunday</input></td>'+
+  '<td><input type="checkbox" id="saturday_active">Saturday</input></td></tr>'+
+  '<tr><td colspan="2"><p style="text-align: center;"><input type="checkbox" id="sunday_active">Sunday</input></p></td>'+
   '</tr></tbody></table>'+
   '<button class="new_event_buttons" onclick="submit_new_events()">Submit</button>'+
   '<button onclick="cancel_new_events()" class="new_event_buttons">Cancel</button>'+

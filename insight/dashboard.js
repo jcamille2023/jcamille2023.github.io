@@ -1,7 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
 import { getAuth, onAuthStateChanged, signOut} from "https://www.gstatic.com/firebasejs/10.5.0/firebase-auth.js";
 import { getDatabase, set, ref, onValue, get, child } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-database.js";
-
+var uid;
  const firebaseConfig = {
     apiKey: "AIzaSyCqUDOyX-OrrrncNv5uABW8hiLndPsMDMg",
     authDomain: "insight-34bc8.firebaseapp.com",
@@ -13,6 +13,7 @@ import { getDatabase, set, ref, onValue, get, child } from "https://www.gstatic.
 
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
+  const database = getDatabase(app);
   const auth = getAuth(app);
 
 function logout() {
@@ -28,18 +29,52 @@ window.logout = logout;
 function add_times_to_schedule() {
   var div = document.getElementById("add-events");
   div.setAttribute("style","visiblity: visible;");
-  div.innerHTML = "<h1>Add an event</h1>";
-  div.innerHTML += "<p>Name</p>";
-  div.innerHTML += "<input type='text' name='name'></input>";
+  div.innerHTML = "<div id='add-events-2'>";
+  div.innerHTML += "<h1>Add an event</h1>";
+  div.innerHTML += "<h4>Name</h4>";
+  div.innerHTML += "<input type='text' id='name'></input>";
   div.innerHTML += "<p>Times</p>";
+  div.innerHTML += '<table style="color: white;">';
+  div.innerHTML += '<table><tbody><tr><td>';
+  div.innerHTML += '<p>Start time</p>';
+  div.innerHTML += '<input type="time" id="start-time"></td>';
+  div.innerHTML += '<td><p>End time</p>';
+  div.innerHTML += '<input type="time" id="end-time">';
+  div.innerHTML += '</td></tr></tbody></table>';
+  div.innerHTML += '<button class="new_event_buttons" onclick="submit-new-events()">Submit</button>';
+  div.innerHTML += '<button onclick="cancel_new_events()" class="new-event-buttons">Cancel</button>';
+  div.innerHTML += '</div>'
+   
 }
 window.add_times_to_schedule = add_times_to_schedule;
+
+function submit_new_events() {
+ var name = document.getElementById('name').value;
+ var start_time = document.getElementById("start_time").value;
+ var end_time = document.getElementById("end_time").value;
+ var event = {
+  name: name,
+  start_time: start_time,
+  end_time: end_time,
+ };
+ const db = getDatabase();
+ set(ref(db, 'users/' + uid), event); 
+}
+window.submit_new_events = submit_new_events
+
+function cancel_new_events() {
+ console.log("New event cancelled");
+ var div = document.getElementById("add-events");
+ div.innerHTML = "";
+ div.setAttribute("style","visiblity: hidden;");
+}
+window.cancel_new_events() = cancel_new_events()
 onAuthStateChanged(auth, (user) => {
   if (user) {
     // User is signed in, see docs for a list of available properties
     // https://firebase.google.com/docs/reference/js/auth.user
     console.log(user);
-    const uid = user.uid;
+    uid = user.uid;
     document.getElementById("username").innerHTML = user.displayName;
     document.getElementById("user-greeting").innerHTML = "Hi, " + user.displayName + "!";
 

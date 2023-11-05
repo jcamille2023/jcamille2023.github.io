@@ -79,7 +79,7 @@ function submit_new_events() {
    friday: friday_active,
    saturday: saturday_active,
    sunday: sunday_active,
- }
+ };
  var event = {
   start_time: start_time,
   end_time: end_time,
@@ -111,9 +111,9 @@ onAuthStateChanged(auth, (user) => {
     document.getElementById("user-greeting").innerHTML = "Hi, " + user.displayName + "!";
     const eventRef = ref(database, 'users/' + uid);
     onValue(eventRef, (snapshot) => {
-     var data = snapshot.val()
+     var data = snapshot.val();
      console.log(data);
-    }
+    });
 
     
     

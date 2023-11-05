@@ -41,8 +41,8 @@ function add_times_to_schedule() {
   '<td><p>End time</p>'+
   '<input type="time" id="end-time">'+
   '</td></tr></tbody></table>'+
-  '<button class="new_event_buttons" onclick="submit-new-events()">Submit</button>'+
-  '<button onclick="cancel_new_events()" class="new-event-buttons">Cancel</button>'+
+  '<button class="new_event_buttons" onclick="submit_new_events()">Submit</button>'+
+  '<button onclick="cancel_new_events()" class="new_event_buttons">Cancel</button>'+
   '</div>';
    
 }

@@ -53,37 +53,6 @@
     
 </div> <!-- end overlay -->
 </div> <!-- end container -->
-<script defer="">
-var am_or_pm;
-var b;
-var tr;
-var td;
-for(let n = 5; n < 24; n++) {
-for(let z = 0; z < 6; z++) {
-  let tr = document.createElement("tr");
-  let td = document.createElement("td");
-  if (n < 12) {
-    b = n.toString();
-    am_or_pm = "am";
-  }
-  else if (n == 12) {
-    b = n.toString();
-    am_or_pm = "pm";
-  }
-  else {
-    let t = n - 12;
-    b = t.toString();
-    am_or_pm = "pm";
-  }
-  
-  const text_node = document.createTextNode(b + ":" + z.toString() + "0" + am_or_pm);
-  td.appendChild(text_node);
-  tr.appendChild(td);
-  var table = document.getElementById("time-table");
-  table.appendChild(tr);
-  
-}
-}
-    </script>
+
 
 <div id="hl-aria-live-message-container" aria-live="polite" class="visually-hidden"></div><div id="hl-aria-live-alert-container" role="alert" aria-live="assertive" class="visually-hidden"></div></body></html>

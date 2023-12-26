@@ -1,5 +1,5 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js';
-import { getMessaging, onBackgroundMessage } from 'https://www.gstatic.com/firebasejs/10.5.0/firebase-messaging-sw.js';
+import { getMessaging, onBackgroundMessage, onMessage } from 'https://www.gstatic.com/firebasejs/10.5.0/firebase-messaging-sw.js';
 
 // Your Firebase project configuration
 const firebaseConfig = {
@@ -17,6 +17,20 @@ const app = initializeApp(firebaseConfig);
 
 // Retrieve an instance of Firebase Messaging
 const messaging = getMessaging(app);
+
+onMessage(messaging, (payload) => {
+  console.log('Foreground message received:', payload);
+
+  // Customize the way you handle the message when the app is in the foreground
+  // For example, display a notification, update UI, etc.
+  const notificationTitle = payload.notification.title;
+  const notificationOptions = {
+    body: payload.notification.body,
+    icon: 'icon.png', // Customize with the path to your app's icon
+  };
+
+  self.registration.showNotification(notificationTitle, notificationOptions);
+});
 
 // Event listener for handling background messages
 onBackgroundMessage(messaging, (payload) => {

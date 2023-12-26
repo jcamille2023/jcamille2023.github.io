@@ -1,5 +1,6 @@
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js';
-import { getMessaging, onBackgroundMessage } from 'https://www.gstatic.com/firebasejs/10.5.0/firebase-messaging-sw.js';
+importScripts('/__/firebase/10.5.0/firebase-app-compat.js');
+importScripts('/__/firebase/10.5.0/firebase-messaging-compat.js');
+importScripts('/__/firebase/init.js');
 
 // Your Firebase project configuration
 const firebaseConfig = {
@@ -13,36 +14,16 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase with the configuration
-const app = initializeApp(firebaseConfig);
-
-// Retrieve an instance of Firebase Messaging
-const messaging = getMessaging(app);
-
-// Event listener for handling background messages
-onBackgroundMessage(messaging, (payload) => {
-  console.log('[firebase-messaging-sw.js] Received background message:', payload);
-
-  // Customize the notification options
-  const notificationTitle = 'New message';
+const messaging = firebase.messaging();
+messaging.onBackgroundMessage(function(payload) {
+  console.log('[firebase-messaging-sw.js] Received background message ', payload);
+  // Customize notification here
+  const notificationTitle = 'Background Message Title';
   const notificationOptions = {
-    body: payload.data.body,
-    icon: 'icon.png', // Customize with the path to your app's icon
+    body: 'Background Message body.',
+    icon: '/firebase-logo.png'
   };
 
-  // Show the notification
-  return self.registration.showNotification(notificationTitle, notificationOptions);
-});
-
-self.addEventListener('push', (event) => {
-  console.log('Push event received:', event);
-
-  // Customize the way you handle the push event
-  // For example, display a notification, update UI, etc.
-  const options = {
-    body: event.data.text(),
-  };
-
-  event.waitUntil(
-    self.registration.showNotification('Notification Title', options)
-  );
+  self.registration.showNotification(notificationTitle,
+    notificationOptions);
 });

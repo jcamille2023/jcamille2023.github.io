@@ -19,7 +19,7 @@ messaging.onBackgroundMessage(function(payload) {
   // Customize notification here
   const notificationTitle = payload.data.displayName + ' in ' + payload.data.channel_name;
   const notificationOptions = {
-    body: content,
+    body: payload.data.content,  // Replace 'content' with the actual content variable
     fcm_options: {
       link: "https://jcamille2023.github.io/arc/channel?channel_id=" + payload.data.channelId,
     },

@@ -1,5 +1,5 @@
-importScripts('https://www.gstatic.com/firebasejs/10.5.0/firebase-app-compat.js');
-importScripts('https://www.gstatic.com/firebasejs/10.5.0/firebase-messaging-compat.js');
+importScripts('https://www.gstatic.com/firebasejs/8.10.1firebase-app-compat.js');
+importScripts('https://www.gstatic.com/firebasejs/8.10.1/firebase-messaging-compat.js');
 
 // Your Firebase project configuration
 firebase.initializeApp({
@@ -17,10 +17,12 @@ const messaging = firebase.messaging();
 messaging.onBackgroundMessage(function(payload) {
   console.log('[firebase-messaging-sw.js] Received background message ', payload);
   // Customize notification here
-  const notificationTitle = 'Background Message Title';
+  const notificationTitle = payload.data.displayName + ' in ' + payload.data.channel_name;
   const notificationOptions = {
-    body: 'Background Message body.',
-    icon: '/firebase-logo.png'
+    body: content,
+    fcm_options: {
+      link: "https://jcamille2023.github.io/arc/channel?channel_id=" + payload.data.channelId,
+    },
   };
 
   self.registration.showNotification(notificationTitle,

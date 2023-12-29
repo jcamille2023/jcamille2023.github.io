@@ -1,4 +1,4 @@
-importScripts('https://www.gstatic.com/firebasejs/8.10.1firebase-app-compat.js');
+importScripts('https://www.gstatic.com/firebasejs/8.10.1/firebase-app-compat.js');
 importScripts('https://www.gstatic.com/firebasejs/8.10.1/firebase-messaging-compat.js');
 
 // Your Firebase project configuration

@@ -1,4 +1,4 @@
-import { initalizeApp } from 'https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js';
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
 import { getMessaging, onBackgroundMessage } from 'https://www.gstatic.com/firebasejs/10.5.0/firebase-messaging.js';
 
 // Your Firebase project configuration

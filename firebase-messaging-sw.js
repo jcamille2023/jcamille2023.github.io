@@ -1,8 +1,8 @@
-importScripts('https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js');
-importScripts('https://www.gstatic.com/firebasejs/8.10.0/firebase-messaging.js');
+import { initalizeApp } from 'https://www.gstatic.com/firebasejs/10.5.1/firebase-app.js');
+import { getMessaging, onBackgroundMessage } from 'https://www.gstatic.com/firebasejs/10.5.1/firebase-messaging-js');
 
 // Your Firebase project configuration
-firebase.initializeApp({
+const firebaseApp = initializeApp({
   apiKey: "AIzaSyC5oq9fyPeoo8jVU-N07gYhjt2kFEBGqA8",
   authDomain: "arc-by-insight.firebaseapp.com",
   projectId: "arc-by-insight",
@@ -13,8 +13,8 @@ firebase.initializeApp({
 });
 
 // Initialize Firebase with the configuration
-const messaging = firebase.messaging();
-messaging.onBackgroundMessage(function(payload) {
+const messaging = getMessaging(firebaseApp);
+onBackgroundMessage(function(payload) {
   console.log('[firebase-messaging-sw.js] Received background message ', payload);
   // Customize notification here
   const notificationTitle = payload.data.displayName + ' in ' + payload.data.channel_name;

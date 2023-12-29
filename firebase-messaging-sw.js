@@ -1,5 +1,5 @@
 import { initalizeApp } from 'https://www.gstatic.com/firebasejs/10.5.1/firebase-app.js';
-import { getMessaging, onBackgroundMessage } from 'https://www.gstatic.com/firebasejs/10.5.1/firebase-messaging-js';
+import { getMessaging, onBackgroundMessage } from 'https://www.gstatic.com/firebasejs/10.5.1/firebase-messaging.js';
 
 // Your Firebase project configuration
 const firebaseApp = initializeApp({

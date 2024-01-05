@@ -27,8 +27,7 @@ messaging.onBackgroundMessage(function(payload) {
     },
   };
 
-  self.registration.showNotification(notificationTitle,
-    notificationOptions);
+      self.registration.showNotification(notificationTitle, notificationOptions);
 });
 
 
@@ -45,9 +44,9 @@ self.onnotificationclick = (event) => {
       })
       .then((clientList) => {
         for (const client of clientList) {
-          if (client.url === "/arc/channel?channel_id=${channel_id}" && "focus" in client) return client.focus();
+          if (client.url === "/arc/channel?channel_id=" + channel_id && "focus" in client) return client.focus();
         }
-        if (clients.openWindow) return clients.openWindow("/arc/channel?channel_id=${channel_id}");
+        if (clients.openWindow) return clients.openWindow("/arc/channel?channel_id=" + channel_id);
       }),
   );
 };
